@@ -28,6 +28,8 @@ const milestones = [
   }
 ];
 
+import anuragImg from '../assets/images/regenerated_image_1778242077975.png';
+
 export default function Journey() {
   return (
     <div className="pt-32 pb-20 bg-background text-foreground overflow-hidden">
@@ -97,7 +99,7 @@ export default function Journey() {
             <div className="aspect-[4/5] rounded-[48px] overflow-hidden border border-border-subtle bg-foreground/5 relative group">
               <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-60 z-10" />
               <img 
-                src="/src/assets/images/regenerated_image_1778242077975.png" 
+                src={anuragImg} 
                 alt="Anurag Chandna" 
                 className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
               />

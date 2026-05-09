@@ -1,17 +1,27 @@
 import { motion, useScroll, useTransform } from 'motion/react';
 import { useRef } from 'react';
 
+import p1 from '../assets/images/regenerated_image_1778243349332.png';
+import p2 from '../assets/images/regenerated_image_1778243350629.png';
+import p3 from '../assets/images/regenerated_image_1778243342183.png';
+import p4 from '../assets/images/regenerated_image_1778243347320.png';
+import p5 from '../assets/images/regenerated_image_1778243348774.png';
+import p6 from '../assets/images/regenerated_image_1778243349891.png';
+import p7 from '../assets/images/regenerated_image_1778243343945.png';
+import p8 from '../assets/images/regenerated_image_1778243345831.png';
+import p9 from '../assets/images/regenerated_image_1778243351381.png';
+
 const partners = [
   { name: " ", logo: "https://atoai.org/wp-content/uploads/2021/04/ATOAI-Logo.png" },
-  { name: " ", logo: "/src/assets/images/regenerated_image_1778243349332.png" },
-  { name: " ", logo: "/src/assets/images/regenerated_image_1778243350629.png" },
-  { name: " ", logo: "/src/assets/images/regenerated_image_1778243342183.png" },
-  { name: " ", logo: "/src/assets/images/regenerated_image_1778243347320.png" },
-  { name: " ", logo: "/src/assets/images/regenerated_image_1778243348774.png" },
-  { name: " ", logo: "/src/assets/images/regenerated_image_1778243349891.png" },
-  { name: " ", logo: "/src/assets/images/regenerated_image_1778243343945.png" },
-  { name: " ", logo: "/src/assets/images/regenerated_image_1778243345831.png" },
-  { name: " ", logo: "/src/assets/images/regenerated_image_1778243351381.png" }
+  { name: " ", logo: p1 },
+  { name: " ", logo: p2 },
+  { name: " ", logo: p3 },
+  { name: " ", logo: p4 },
+  { name: " ", logo: p5 },
+  { name: " ", logo: p6 },
+  { name: " ", logo: p7 },
+  { name: " ", logo: p8 },
+  { name: " ", logo: p9 }
 ];
 
 export default function PartnersSection() {

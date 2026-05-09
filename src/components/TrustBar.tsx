@@ -1,18 +1,26 @@
 import { motion } from 'motion/react';
+import bullsLogo from '../assets/images/artifacts/Bulls.png';
+import pvlLogo from '../assets/images/artifacts/pvl-logo.png';
+import hilLogo from '../assets/images/artifacts/hil_logo_2.webp';
+import burmanLogo from '../assets/images/artifacts/burman_sports_logo.jpg';
+import fourDLogo from '../assets/images/artifacts/4D-logo-1024x1024.png';
+import stellarLogo from '../assets/images/artifacts/stellar-logo.png';
+import mangulLogo from '../assets/images/artifacts/logo.png';
+import sssLogo from '../assets/images/artifacts/sss-logo.jpg';
 
 const partners = [
-  { name: "Bengaluru Bulls", logo: "/src/assets/images/artifacts/Bulls.png " },
-  { name: "Premier Volleyball League", logo: "/src/assets/images/artifacts/pvl-logo.png" },
-  { name: "Hockey India League", logo: "/src/assets/images/artifacts/hil_logo_2.webp" },
-  { name: "Burman Sports", logo: "/src/assets/images/artifacts/burman_sports_logo.jpg " },
+  { name: "Bengaluru Bulls", logo: bullsLogo },
+  { name: "Premier Volleyball League", logo: pvlLogo },
+  { name: "Hockey India League", logo: hilLogo },
+  { name: "Burman Sports", logo: burmanLogo },
   { name: "Narne NETWORK" },
-  { name: "4D Entertainers", logo: "/src/assets/images/artifacts/4D-logo-1024x1024.png" },
+  { name: "4D Entertainers", logo: fourDLogo },
   { name: "Kosmik Asset Creator" },
-  { name: "Stellar", logo: "/src/assets/images/artifacts/stellar-logo.png" },
+  { name: "Stellar", logo: stellarLogo },
   { name: "Golden Shelters Pvt Ltd" },
-  { name: "Mangul", logo: "/src/assets/images/artifacts/logo.png" },
+  { name: "Mangul", logo: mangulLogo },
   { name: "The Right Shot" },
-  { name: "SSS", logo: "/src/assets/images/artifacts/sss-logo.jpg" },
+  { name: "SSS", logo: sssLogo },
 ];
 
 export default function TrustBar() {

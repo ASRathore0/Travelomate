@@ -94,11 +94,11 @@ export default function Navbar() {
             <Logo />
             <div className="hidden md:flex items-center pl-4 border-l border-foreground/10 h-10">
               <div className="flex flex-col justify-center leading-tight">
-                <span className="text-sm font-black tracking-tight flex items-center gap-1">
+                <span className="text-lg font-black tracking-tight flex items-center gap-1">
                   <span className="text-brand">16</span>
                   <span className="text-foreground/80 lowercase">Years</span>
                 </span>
-                <span className="text-[10px] uppercase font-bold tracking-[0.1em] text-foreground/30">of Excellence</span>
+                <span className="text-xs uppercase font-bold tracking-[0.1em] text-foreground/30">of Excellence</span>
               </div>
             </div>
           </div>

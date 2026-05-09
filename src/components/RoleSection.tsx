@@ -11,9 +11,9 @@ const roles = [
 
 export default function RoleSection() {
   return (
-    <section id="about" className="py-16 lg:py-24 bg-background text-foreground diagonal-clip transition-colors duration-500">
+    <section id="about" className="py-4 lg:py-6 bg-background text-foreground diagonal-clip transition-colors duration-500">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="text-center mb-16 lg:mb-20">
+        <div className="text-center mb-6 lg:mb-8">
           <h2 className="text-4xl lg:text-6xl font-display font-bold tracking-tight mb-4">
             Built for Every <span className="text-brand">Role.</span>
           </h2>

@@ -29,7 +29,7 @@ export default function TraveloIntro() {
   ];
 
   return (
-    <section className="py-24 lg:py-32 bg-background relative overflow-hidden">
+    <section className="py-8 lg:py-12 bg-background relative overflow-hidden">
       {/* Decorative background elements */}
       <div className="absolute top-0 right-0 w-1/3 h-full bg-linear-to-l from-brand/5 to-transparent pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-64 h-64 bg-brand/5 blur-3xl rounded-full translate-y-1/2 -translate-x-1/2 pointer-events-none" />

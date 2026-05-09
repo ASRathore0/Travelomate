@@ -6,10 +6,10 @@ export default function AudienceSection() {
   const navigate = useNavigate();
 
   return (
-    <section id="solutions" className="py-20 lg:py-32 relative overflow-hidden bg-background">
+    <section id="solutions" className="py-10 lg:py-16 relative overflow-hidden bg-background">
       <div className="max-w-7xl mx-auto px-6">
         
-        <div className="text-center max-w-2xl mx-auto mb-16 lg:mb-24">
+        <div className="text-center max-w-2xl mx-auto mb-8 lg:mb-12">
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}

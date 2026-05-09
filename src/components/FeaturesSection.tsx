@@ -57,9 +57,9 @@ export default function FeaturesSection() {
   const [mode, setMode] = useState<'sports' | 'corporate'>('sports');
 
   return (
-    <section id="features" className="py-16 lg:py-24 bg-background relative overflow-hidden transition-colors duration-500 text-foreground">
+    <section id="features" className="py-6 lg:py-10 bg-background relative overflow-hidden transition-colors duration-500 text-foreground">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-16">
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-8">
           <div className="max-w-2xl">
             <h2 className="text-3xl sm:text-4xl lg:text-6xl font-display font-bold mb-6">
               Everything You Need.<br /> <span className="opacity-40 italic">One Unified Platform.</span>

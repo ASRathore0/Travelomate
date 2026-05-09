@@ -78,12 +78,12 @@ export default function Testimonials() {
   };
 
   return (
-    <section className="py-32 bg-background overflow-hidden relative">
+    <section className="py-12 lg:py-16 bg-background overflow-hidden relative">
       {/* Background Accent */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-[500px] bg-brand/5 blur-[120px] rounded-full pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
-        <div className="text-center mb-16">
+        <div className="text-center mb-8 lg:mb-12">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand/10 border border-brand/20 text-[10px] font-black text-brand uppercase tracking-[0.2em] mb-4">
             Voice of Intelligence
           </div>
@@ -147,7 +147,7 @@ export default function Testimonials() {
         </div>
 
         {/* Indicators */}
-        <div className="flex justify-center gap-2 mt-24">
+        <div className="flex justify-center gap-2 mt-8 lg:mt-12">
           {testimonials.map((_, i) => (
             <button
               key={i}

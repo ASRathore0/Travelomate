@@ -40,7 +40,7 @@ export default function StatsSection() {
   const isInView = useInView(ref, { once: true });
 
   return (
-    <section ref={ref} className="py-16 lg:py-24 bg-background relative overflow-hidden transition-colors duration-500">
+    <section ref={ref} className="py-8 lg:py-12 bg-background relative overflow-hidden transition-colors duration-500">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05] pointer-events-none" 
            style={{ backgroundImage: `radial-gradient(circle, currentColor 1px, transparent 1px)`, backgroundSize: '40px 40px' }} />

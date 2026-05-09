@@ -5,23 +5,12 @@ import p1 from '../assets/images/regenerated_image_1778243349332.png';
 import p2 from '../assets/images/regenerated_image_1778243350629.png';
 import p3 from '../assets/images/regenerated_image_1778243342183.png';
 import p4 from '../assets/images/regenerated_image_1778243347320.png';
-import p5 from '../assets/images/regenerated_image_1778243348774.png';
-import p6 from '../assets/images/regenerated_image_1778243349891.png';
-import p7 from '../assets/images/regenerated_image_1778243343945.png';
-import p8 from '../assets/images/regenerated_image_1778243345831.png';
-import p9 from '../assets/images/regenerated_image_1778243351381.png';
 
 const partners = [
-  { name: " ", logo: "https://atoai.org/wp-content/uploads/2021/04/ATOAI-Logo.png" },
   { name: " ", logo: p1 },
   { name: " ", logo: p2 },
   { name: " ", logo: p3 },
-  { name: " ", logo: p4 },
-  { name: " ", logo: p5 },
-  { name: " ", logo: p6 },
-  { name: " ", logo: p7 },
-  { name: " ", logo: p8 },
-  { name: " ", logo: p9 }
+  { name: " ", logo: p4 }
 ];
 
 export default function PartnersSection() {
@@ -37,7 +26,7 @@ export default function PartnersSection() {
   return (
     <section 
       ref={sectionRef}
-      className="py-24 border-y border-border-subtle bg-background relative overflow-hidden transition-colors duration-500"
+      className="py-12 lg:py-16 border-y border-border-subtle bg-background relative overflow-hidden transition-colors duration-500"
     >
       {/* Parallax Background Elements */}
       <motion.div 
@@ -49,43 +38,36 @@ export default function PartnersSection() {
         className="absolute -bottom-24 -right-24 w-96 h-96 bg-brand/5 rounded-full blur-3xl pointer-events-none"
       />
 
-      <div className="max-w-7xl mx-auto px-6 mb-16 flex items-center justify-center gap-6 relative z-10">
-        <div className="h-[1px] flex-grow bg-gradient-to-r from-transparent to-brand/20" />
-        <h2 className="text-[10px] font-black uppercase tracking-[0.4em] text-foreground/40 text-center px-6 py-2 border border-border-subtle rounded-full bg-background/50 backdrop-blur-sm shadow-sm whitespace-nowrap">
+      <div className="max-w-7xl mx-auto px-6 mb-10 flex flex-col items-center text-center gap-2 relative z-10">
+        <p className="text-[10px] font-black uppercase tracking-[0.2em] text-foreground/40">
           Our Association Partners
-        </h2>
-        <div className="h-[1px] flex-grow bg-gradient-to-l from-transparent to-brand/20" />
+        </p>
+        <div className="w-12 h-0.5 bg-brand/30 rounded-full mt-2" />
       </div>
 
-      <div className="relative group overflow-hidden z-10">
-        <div className="flex animate-scroll items-center gap-8 md:gap-16 w-max py-4">
-            {[...partners, ...partners, ...partners].map((p, i) => (
+      <div className="relative z-10 max-w-5xl mx-auto px-6">
+        <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12 lg:gap-16 py-4">
+            {partners.map((p, i) => (
               <motion.div 
                 key={i} 
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: i * 0.05 }}
                 whileHover={{ 
-                  scale: 1.05,
-                  backgroundColor: "rgba(var(--foreground-rgb), 0.05)",
-                  borderColor: "rgba(var(--brand-rgb), 0.2)"
+                  scale: 1.05
                 }}
-                transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                className="flex-shrink-0 flex items-center gap-4 md:gap-6 px-6 py-3 md:px-8 md:py-4 bg-foreground/[0.02] rounded-2xl border border-transparent transition-all group cursor-pointer"
+                className="flex items-center justify-center h-16 md:h-20 w-28 md:w-36 bg-transparent transition-all group cursor-pointer opacity-80 hover:opacity-100"
               >
                <img 
                  src={p.logo} 
-                 alt={p.name} 
-                 className="h-10 md:h-12 lg:h-16 w-auto object-contain transition-all duration-500" 
+                 alt={p.name || 'Partner'} 
+                 className="max-h-12 md:max-h-14 w-auto object-contain transition-all duration-300 drop-shadow-xs dark:drop-shadow-none dark:contrast-[1.15]" 
                  referrerPolicy="no-referrer"
                />
-               <span className="text-base md:text-lg lg:text-xl font-display font-black text-foreground/80 tracking-tighter group-hover:text-brand transition-colors whitespace-nowrap">
-                 {p.name}
-               </span>
               </motion.div>
             ))}
         </div>
-        
-        {/* Masking */}
-        <div className="absolute inset-y-0 left-0 w-24 md:w-64 bg-gradient-to-r from-background via-background/80 to-transparent pointer-events-none z-20" />
-        <div className="absolute inset-y-0 right-0 w-24 md:w-64 bg-gradient-to-l from-background via-background/80 to-transparent pointer-events-none z-20" />
       </div>
     </section>
   );

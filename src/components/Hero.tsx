@@ -52,7 +52,20 @@ export default function Hero() {
 
   return (
     <div className="relative pt-12 lg:pt-20 pb-20 lg:pb-24 overflow-hidden bg-background">
-      <div className="max-w-7xl mx-auto px-6 relative">
+      {/* Professional Visual Background Elements */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        {/* Subtle grid pattern for technical/SaaS feel */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
+        
+        {/* Soft, blurred glowing orbs for depth */}
+        <div className="absolute top-0 right-1/4 w-[500px] h-[500px] bg-brand/10 rounded-full blur-[120px] opacity-70" />
+        <div className="absolute bottom-0 left-1/4 w-[600px] h-[600px] bg-corporate/5 rounded-full blur-[150px] opacity-50" />
+        
+        {/* Subtle top light gradient */}
+        <div className="absolute top-0 inset-x-0 h-40 bg-linear-to-b from-brand/5 to-transparent" />
+      </div>
+
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           <motion.div
             initial={{ opacity: 0, x: -50 }}

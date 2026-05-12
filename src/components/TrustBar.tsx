@@ -25,7 +25,7 @@ const partners = [
   { name: "Mangul", logo: mangulLogo },
   { name: "The Right Shot" },
   { name: "SSS", logo: sssLogo },
-  { name: "Media", logo: Media },
+  { name: "Media", logo: Media  },
 ];
 
 export default function TrustBar() {

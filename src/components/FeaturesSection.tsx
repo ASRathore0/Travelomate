@@ -15,15 +15,13 @@ const content = {
       },
       {
         icon: Target,
-        title: "Per Diem Automation",
-        desc: "Automated allowance payouts for athletes and staff. Multi-currency support for international tournaments.",
-        tag: "Compliance"
+        title: "Allowance & Expense Distribution",
+        desc: "Centralized automation for travel-related allowances and staff payouts across tournaments, leagues, and corporate travel."
       },
       {
         icon: Users,
-        title: "Roster Sync",
-        desc: "Sync with your league roster system. Instant updates when players get traded or staff changes occurs.",
-        tag: "Dynamic"
+        title: "Team Lineup Integration",
+        desc: "Integrate seamlessly with your league systems for real-time updates on player transfers, staff changes, and team movements."
       }
     ]
   },

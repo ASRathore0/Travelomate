@@ -1,29 +1,61 @@
 import { motion } from 'motion/react';
-import { Trophy, Zap, Globe, Users, ArrowRight } from 'lucide-react';
+import { Trophy, Zap, Globe, Users, ArrowRight, Briefcase, Activity, TrendingUp } from 'lucide-react';
 import { useDemo } from '../lib/DemoContext';
 
 export default function SportsLeagues() {
   const { openDemo } = useDemo();
 
   return (
-    <div className="pt-32 pb-20">
-      <div className="max-w-7xl mx-auto px-6">
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="text-center mb-20"
-        >
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-electric-green/10 border border-electric-green/20 text-[10px] lg:text-xs font-bold text-electric-green uppercase tracking-widest mb-6">
-            <Trophy className="w-3 h-3" /> Professional Sports Solutions
-          </div>
-          <h1 className="text-3xl sm:text-5xl lg:text-7xl font-display font-bold mb-6 text-foreground">
-            Travel That Powers <br /><span className="text-electric-green italic">Performance.</span>
-          </h1>
-          <p className="text-xl text-foreground/60 max-w-3xl mx-auto leading-relaxed">
-            From youth academies to global pro leagues, Travelomate handles the logistics so you can focus on the scoreboard.
-          </p>
-        </motion.div>
+    <div className="w-full">
+      {/* Hero Section with Video */}
+      <div className="relative min-h-[70vh] lg:min-h-[80vh] flex items-center justify-center py-20 lg:py-30 overflow-hidden border-b border-white/5">
+        {/* Background Sports Video */}
+        <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden bg-[#050505]">
+          <video 
+            autoPlay 
+            loop 
+            muted 
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover opacity-70"
+            src="/sports-bg.mp4"
+          />
+          {/* Universal Dark Overlay for perfect, readable contrast everywhere */}
+          <div className="absolute inset-0 bg-black/60"></div>
+          {/* Bottom fade into the rest of the page */}
+          <div className="absolute inset-x-0 bottom-0 h-0 bg-gradient-to-t from-background to-transparent"></div>
+        </div>
 
+        <div className="relative z-10 max-w-5xl mx-auto px-6 w-full text-center">
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="flex flex-col items-center justify-center"
+          >
+            <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white/10 border border-white/20 text-xs font-bold text-electric-green uppercase tracking-widest mb-8 backdrop-blur-md shadow-2xl">
+              <Trophy className="w-3 h-3" /> Professional Sports Logistics
+            </div>
+            
+            <h1 className="text-4xl sm:text-5xl lg:text-7xl font-display font-bold mb-6 text-white leading-[1.1] tracking-tight drop-shadow-2xl">
+              Your Focus Should Be On The <span className="text-electric-green italic pr-2 drop-shadow-[0_0_30px_rgba(20,255,0,0.5)]">Field.</span><br />
+              <span className="text-white/95">Not How To Get There.</span>
+            </h1>
+            
+            <p className="text-lg lg:text-xl text-white/80 max-w-3xl mx-auto leading-relaxed mb-10 font-medium drop-shadow-lg">
+              From youth academies to global pro leagues, Travelomate handles the complex logistics so you can focus on the scoreboard.
+            </p>
+
+            {/* <button 
+              onClick={openDemo}
+              className="px-10 py-5 bg-electric-green text-navy rounded-full font-black text-lg flex items-center justify-center gap-3 hover:scale-105 transition-transform duration-300 shadow-[0_0_40px_rgba(20,255,0,0.3)] w-full sm:w-auto"
+            >
+              Book a Consultation <ArrowRight className="w-6 h-6" />
+            </button> */}
+          </motion.div>
+        </div>
+      </div>
+
+      <div className="max-w-7xl mx-auto px-6 py-20">
         <div className="grid lg:grid-cols-3 gap-8 mb-32">
           {[
             {
@@ -141,6 +173,81 @@ export default function SportsLeagues() {
                    <h4 className="text-2xl font-display font-bold">Synchronized Squad Logistics</h4>
                 </div>
              </div>
+          </div>
+        </div>
+
+        {/* Comprehensive Services */}
+        <div className="mt-32">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-display font-bold mb-4">End-to-End Sports Travel Management</h2>
+            <p className="text-foreground/60 max-w-3xl mx-auto leading-relaxed">
+              Backed by over 15 years of travel management expertise, our dedicated consultants partner with you to deliver strategic solutions that maximize savings, streamline operations, and elevate the travel experience.
+            </p>
+          </div>
+
+          <div className="grid lg:grid-cols-3 gap-8 mb-32">
+            <div className="p-8 bg-foreground/[0.02] border border-foreground/5 rounded-3xl hover:border-electric-green/30 transition-all">
+              <div className="w-12 h-12 bg-electric-green/10 rounded-xl flex items-center justify-center mb-6">
+                <Briefcase className="w-6 h-6 text-electric-green" />
+              </div>
+              <h3 className="text-2xl font-display font-bold mb-4">Travel Management</h3>
+              <p className="text-foreground/70 mb-6 text-sm leading-relaxed">Secure the lowest rates and maximize savings with comprehensive sourcing and management.</p>
+              <ul className="space-y-3 text-sm text-foreground/80">
+                {[
+                  "Hotel & bus transportation selection",
+                  "Contract & rate negotiations",
+                  "Budgeting & annual forecasting",
+                  "Ancillary spend management (A/V, menus, fees)"
+                ].map((item, i) => (
+                  <li key={i} className="flex items-start gap-3">
+                    <div className="w-1.5 h-1.5 rounded-full bg-electric-green mt-1.5 flex-shrink-0" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="p-8 bg-foreground/[0.02] border border-foreground/5 rounded-3xl hover:border-electric-green/30 transition-all">
+              <div className="w-12 h-12 bg-electric-green/10 rounded-xl flex items-center justify-center mb-6">
+                <Activity className="w-6 h-6 text-electric-green" />
+              </div>
+              <h3 className="text-2xl font-display font-bold mb-4">Operations</h3>
+              <p className="text-foreground/70 mb-6 text-sm leading-relaxed">Seamless 24/7 service from initial planning stages through trip completion.</p>
+              <ul className="space-y-3 text-sm text-foreground/80">
+                {[
+                  "Proactive flight monitoring",
+                  "Detailed hotel itinerary review",
+                  "Incident resolution & emergency services",
+                  "Consolidated billing & reporting"
+                ].map((item, i) => (
+                  <li key={i} className="flex items-start gap-3">
+                    <div className="w-1.5 h-1.5 rounded-full bg-electric-green mt-1.5 flex-shrink-0" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="p-8 bg-foreground/[0.02] border border-foreground/5 rounded-3xl hover:border-electric-green/30 transition-all">
+              <div className="w-12 h-12 bg-electric-green/10 rounded-xl flex items-center justify-center mb-6">
+                <TrendingUp className="w-6 h-6 text-electric-green" />
+              </div>
+              <h3 className="text-2xl font-display font-bold mb-4">Strategic Planning</h3>
+              <p className="text-foreground/70 mb-6 text-sm leading-relaxed">Future-proof your travel program against escalating budgets and inefficiencies.</p>
+              <ul className="space-y-3 text-sm text-foreground/80">
+                {[
+                  "Long-term budget stabilization",
+                  "Customized strategic travel plans",
+                  "Travel policy implementation",
+                  "Continuous efficiency optimization"
+                ].map((item, i) => (
+                  <li key={i} className="flex items-start gap-3">
+                    <div className="w-1.5 h-1.5 rounded-full bg-electric-green mt-1.5 flex-shrink-0" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
 

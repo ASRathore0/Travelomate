@@ -89,10 +89,10 @@ export default function AudienceSection() {
               
               <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-12">
                 {[
-                  { icon: Users, text: 'Mass Roster Sync' },
+                  { icon: Users, text: 'Flight monitoring' },
                   { icon: Plane, text: 'Charter & Bulk' },
                   { icon: MapPin, text: 'Venue Proximity' },
-                  { icon: Trophy, text: 'Uniform Per Diems' }
+                  { icon: Trophy, text: 'Incident resolution' }
                 ].map((item, i) => (
                   <li key={i} className="flex items-center gap-3 p-3.5 rounded-2xl bg-brand/[0.02] border border-brand/10 hover:border-brand/30 transition-colors">
                     <item.icon className="w-4 h-4 text-brand" />

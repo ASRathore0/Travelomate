@@ -6,24 +6,49 @@ export default function CorporateTeams() {
   const { openDemo } = useDemo();
 
   return (
-    <div className="pt-32 pb-20">
-      <div className="max-w-7xl mx-auto px-6">
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="text-center mb-20"
-        >
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-vivid-orange/10 border border-vivid-orange/20 text-[10px] lg:text-xs font-bold text-vivid-orange uppercase tracking-widest mb-6">
-            <Briefcase className="w-3 h-3" /> Enterprise Solutions
-          </div>
-          <h1 className="text-3xl sm:text-5xl lg:text-7xl font-display font-bold mb-6 text-foreground">
-            Travel for the <br /><span className="text-vivid-orange italic">Modern Enterprise.</span>
-          </h1>
-          <p className="text-xl text-foreground/60 max-w-3xl mx-auto leading-relaxed">
-            Scalable travel management designed for efficiency, policy compliance, and employee well-being.
-          </p>
-        </motion.div>
+    <div className="w-full">
+      {/* Hero Section with Video */}
+      <div className="relative min-h-[70vh] lg:min-h-[80vh] flex items-center justify-center py-20 lg:py-38 overflow-hidden border-b border-white/5">
+        {/* Background Corporate Video */}
+        <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden bg-[#050505]">
+          <video 
+            autoPlay 
+            loop 
+            muted 
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover opacity-70"
+            src="/corporate-hero.mp4"
+          />
+          {/* Universal Dark Overlay */}
+          <div className="absolute inset-0 bg-black/60"></div>
+          {/* Bottom fade */}
+          <div className="absolute inset-x-0 bottom-0 h-0 bg-gradient-to-t from-background to-transparent"></div>
+        </div>
 
+        <div className="relative z-10 max-w-5xl mx-auto px-6 w-full text-center">
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="flex flex-col items-center justify-center"
+          >
+            <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white/10 border border-white/20 text-xs font-bold text-vivid-orange uppercase tracking-widest mb-8 backdrop-blur-md shadow-2xl">
+              <Briefcase className="w-4 h-4 text-vivid-orange" /> Enterprise Solutions
+            </div>
+            
+            <h1 className="text-4xl sm:text-5xl lg:text-7xl font-display font-bold mb-6 text-white leading-[1.1] tracking-tight drop-shadow-2xl">
+              Travel for the <br />
+              <span className="text-vivid-orange italic pr-2 drop-shadow-[0_0_30px_rgba(255,102,0,0.5)]">Modern Enterprise.</span>
+            </h1>
+            
+            <p className="text-lg lg:text-xl text-white/80 max-w-3xl mx-auto leading-relaxed mb-10 font-medium drop-shadow-lg">
+              Scalable travel management designed for efficiency, policy compliance, and employee well-being.
+            </p>
+          </motion.div>
+        </div>
+      </div>
+
+      <div className="max-w-7xl mx-auto px-6 py-20">
         <div className="grid lg:grid-cols-3 gap-8 mb-32">
           {[
             {

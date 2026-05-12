@@ -29,10 +29,9 @@ function Counter({ value }: { value: string }) {
 }
 
 const stats = [
-  { value: "500+", label: "Organizations Trust Us" },
+  { value: "100+", label: "Organizations Trust Us" },
   { value: "50+", label: "Sports Leagues Managed" },
-  { value: "₹120 Cr+", label: "Annual Travel Spend" },
-  { value: "98%", label: "Satisfaction Score" }
+  { value: "99%", label: "Satisfaction Score" }
 ];
 
 export default function StatsSection() {

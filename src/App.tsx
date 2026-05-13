@@ -20,6 +20,18 @@ import ScrollToTop from './components/ScrollToTop';
 import DemoModal from './components/DemoModal';
 import { DemoProvider, useDemo } from './lib/DemoContext';
 
+// Solutions Pages
+import FinanceTeams from './pages/solutions/FinanceTeams';
+import TravelManagers from './pages/solutions/TravelManagers';
+import ExecutiveAssistants from './pages/solutions/ExecutiveAssistants';
+import HumanResources from './pages/solutions/HumanResources';
+import OperationsTeams from './pages/solutions/OperationsTeams';
+import Healthcare from './pages/solutions/Healthcare';
+import Construction from './pages/solutions/Construction';
+import SoftwareTech from './pages/solutions/SoftwareTech';
+import Manufacturing from './pages/solutions/Manufacturing';
+import TransportationLogistics from './pages/solutions/TransportationLogistics';
+
 function AppContent() {
   const { isOpen, closeDemo } = useDemo();
   
@@ -38,6 +50,18 @@ function AppContent() {
           <Route path="/journey" element={<Journey />} />
           <Route path="/careers" element={<Careers />} />
           <Route path="/auth" element={<Auth />} />
+          
+          {/* Solutions Routes */}
+          <Route path="/solutions/finance-teams" element={<FinanceTeams />} />
+          <Route path="/solutions/travel-managers" element={<TravelManagers />} />
+          <Route path="/solutions/executive-assistants" element={<ExecutiveAssistants />} />
+          <Route path="/solutions/human-resources" element={<HumanResources />} />
+          <Route path="/solutions/operations-teams" element={<OperationsTeams />} />
+          <Route path="/solutions/healthcare" element={<Healthcare />} />
+          <Route path="/solutions/construction" element={<Construction />} />
+          <Route path="/solutions/software-tech" element={<SoftwareTech />} />
+          <Route path="/solutions/manufacturing" element={<Manufacturing />} />
+          <Route path="/solutions/transportation-logistics" element={<TransportationLogistics />} />
         </Routes>
       </main>
       <Footer />

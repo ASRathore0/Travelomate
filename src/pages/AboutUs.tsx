@@ -6,7 +6,7 @@ export default function AboutUs() {
   const { openDemo } = useDemo();
 
   return (
-    <div className="pt-32 pb-20 bg-background text-foreground overflow-hidden">
+    <div className="pt-20 pb-20 bg-background text-foreground overflow-hidden">
       {/* Hero Section */}
       <section className="max-w-7xl mx-auto px-6 mb-32 relative">
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-brand/5 blur-[120px] -mr-64 -mt-32 rounded-full pointer-events-none" />

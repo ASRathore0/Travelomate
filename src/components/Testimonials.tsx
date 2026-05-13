@@ -14,7 +14,7 @@ const testimonials = [
     quote: "The self-booking tool combined with 24/7 human support has saved our firm 30% in travel spend while keeping our consultants happy. It's the partner we've been looking for.",
     author: "Neha Sharma",
     role: "Head of Procurement",
-    avatar: "https://images.unsplash.com/photo-1494433223254-340cfed26a97?auto=format&fit=crop&q=80&w=150",
+    avatar: "https://tech-summit.org/wp-content/themes/tech-summit/assets/images/speakers/2024/neha-sharma.jpg",
     company: "Global Tech Solutions"
   },
   {

@@ -7,7 +7,7 @@ const posts = [
     category: "Operations",
     date: "May 5, 2026",
     readTime: "8 min read",
-    image: "https://images.unsplash.com/photo-1541252260730-0412e3e216d5?auto=format&fit=crop&q=80&w=800"
+    image: "https://www.lastmilelogisticssolutions.com/wp-content/uploads/Pop-Up-Sport-Logistics.jpg"
   },
   {
     title: "How Al is Optimizing Corporate Travel Budgets in 2026",
@@ -27,7 +27,7 @@ const posts = [
 
 export default function Blog() {
   return (
-    <div className="pt-32 pb-20 bg-background text-foreground overflow-hidden">
+    <div className="pt-10 pb-20 bg-background text-foreground overflow-hidden">
       <section className="max-w-7xl mx-auto px-6 mb-20 relative text-center">
         <div className="absolute top-0 right-1/2 translate-x-1/2 w-[600px] h-[600px] bg-brand/5 blur-[120px] -mt-64 rounded-full pointer-events-none" />
         

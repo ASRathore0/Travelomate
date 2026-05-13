@@ -8,7 +8,7 @@ export default function CorporateTeams() {
   return (
     <div className="w-full">
       {/* Hero Section with Video */}
-      <div className="relative min-h-[70vh] lg:min-h-[80vh] flex items-center justify-center py-20 lg:py-38 overflow-hidden border-b border-white/5">
+      <div className="relative min-h-[70vh] lg:min-h-[80vh] flex items-center justify-center py-20 lg:py-40 overflow-hidden border-b border-white/5">
         {/* Background Corporate Video */}
         <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden bg-[#050505]">
           <video 

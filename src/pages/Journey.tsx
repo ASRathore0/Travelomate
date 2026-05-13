@@ -32,7 +32,7 @@ import anuragImg from '../assets/images/regenerated_image_1778242077975.png';
 
 export default function Journey() {
   return (
-    <div className="pt-32 pb-20 bg-background text-foreground overflow-hidden">
+    <div className="pt-20 pb-20 bg-background text-foreground overflow-hidden">
       <section className="max-w-7xl mx-auto px-6 mb-24 relative">
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-brand/5 blur-[120px] -mr-64 -mt-32 rounded-full pointer-events-none" />
         

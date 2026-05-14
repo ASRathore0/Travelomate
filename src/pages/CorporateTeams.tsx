@@ -20,7 +20,7 @@ export default function CorporateTeams() {
             src="/corporate-hero.mp4"
           />
           {/* Universal Dark Overlay */}
-          <div className="absolute inset-0 bg-black/60"></div>
+          <div className="absolute inset-0 bg-black/20"></div>
           {/* Bottom fade */}
           <div className="absolute inset-x-0 bottom-0 h-0 bg-gradient-to-t from-background to-transparent"></div>
         </div>

@@ -20,7 +20,7 @@ export default function SportsLeagues() {
             src="/sports-bg.mp4"
           />
           {/* Universal Dark Overlay for perfect, readable contrast everywhere */}
-          <div className="absolute inset-0 bg-black/60"></div>
+          <div className="absolute inset-0 bg-black/30"></div>
           {/* Bottom fade into the rest of the page */}
           <div className="absolute inset-x-0 bottom-0 h-0 bg-gradient-to-t from-background to-transparent"></div>
         </div>

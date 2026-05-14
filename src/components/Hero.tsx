@@ -61,7 +61,7 @@ export default function Hero() {
           src="/main-hero-bg.mp4"
         />
         {/* Universal Dark Overlay */}
-        <div className="absolute inset-0 bg-black/60"></div>
+        <div className="absolute inset-0 bg-black/20"></div>
         {/* Bottom fade */}
         <div className="absolute inset-x-0 bottom-0 h-0 bg-gradient-to-t from-background to-transparent"></div>
       </div>
@@ -103,7 +103,7 @@ export default function Hero() {
 
             <div className="mt-12 flex flex-wrap items-center gap-8 border-t border-white/10 pt-8">
               <div className="space-y-1">
-                <p className="text-xl font-bold font-display text-white">500+</p>
+                <p className="text-xl font-bold font-display text-white">100+</p>
                 <p className="text-[10px] text-white/60 uppercase tracking-widest">Global Clients</p>
               </div>
               <div className="hidden sm:block w-[1px] h-10 bg-white/10" />
@@ -113,7 +113,7 @@ export default function Hero() {
               </div>
               <div className="hidden sm:block w-[1px] h-10 bg-white/10" />
               <div className="space-y-1 font-display">
-                <p className="text-xl font-bold font-display text-white">120 Cr+</p>
+                <p className="text-xl font-bold font-display text-white">70 Cr+</p>
                 <p className="text-[10px] text-white/60 uppercase tracking-widest">Managed Spend</p>
               </div>
             </div>
@@ -136,7 +136,7 @@ export default function Hero() {
                    animate={{ opacity: 1, x: 0, scale: 1 }}
                    exit={{ opacity: 0, x: -50, scale: 0.9 }}
                    transition={{ duration: 0.5, type: 'spring', bounce: 0.4 }}
-                   className="w-full max-w-sm bg-black/40 backdrop-blur-xl border border-white/10 rounded-[32px] p-8 shadow-2xl relative"
+                   className="w-full max-w-sm bg-black/40 border border-white/10 rounded-[32px] p-8 shadow-2xl relative"
                  >
                    <div className="text-brand/40 font-display font-black text-5xl mb-6">
                      {CORE_VALUES[activeIndex].id}

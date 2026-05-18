@@ -83,7 +83,7 @@ export default function Navbar() {
       ]
     },
     { 
-      name: 'Resoureces ', 
+      name: 'Resources', 
       href: '#Resourece',
       dropdown: [
          

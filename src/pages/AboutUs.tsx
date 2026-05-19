@@ -211,7 +211,7 @@ export default function AboutUs() {
                  >
                     Book Discovery Call <ChevronRight className="w-5 h-5" />
                  </button>
-                  <a href="/contact" className="px-10 py-5 bg-white/10 hover:bg-white/20 border border-white/20 rounded-2xl font-black text-lg transition-all">
+                  <a href="./contact" className="px-10 py-5 bg-white/10 hover:bg-white/20 border border-white/20 rounded-2xl font-black text-lg transition-all">
                     Contact Us
                  </a>
               </div>

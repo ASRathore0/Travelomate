@@ -56,12 +56,12 @@ export default function TraveloIntro() {
                     </div>
                     <div className="flex items-center">
                       <img
-                        src="/src/assets/images/artifacts/thrive black (2).png"
+                        src="./src/assets/images/artifacts/thrive black (2).png"
                         alt="Thrive Powered by Travelomate"
                         className="h-6 md:h-9 w-auto thrive-logo-light"
                       />
                       <img
-                        src="/src/assets/images/artifacts/Thrive white.png"
+                        src="./src/assets/images/artifacts/Thrive white.png"
                         alt="Thrive Powered by Travelomate"
                         className="h-6 md:h-10 w-auto thrive-logo-dark"
                       />

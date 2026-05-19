@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { MousePointer2, Smartphone, ShieldCheck, Zap, ArrowRight, LayoutGrid, Plane, Hotel, Car, MapPin, Navigation } from 'lucide-react';
+import thriveLogoLight from '../assets/images/artifacts/thrive black (2).png';
+import thriveLogoDark from '../assets/images/artifacts/Thrive white.png';
 
 export default function TraveloIntro() {
   const [activeTab, setActiveTab] = useState<'flight' | 'hotel' | 'cab'>('flight');
@@ -56,12 +58,12 @@ export default function TraveloIntro() {
                     </div>
                     <div className="flex items-center">
                       <img
-                        src="./src/assets/images/artifacts/thrive black (2).png"
+                        src={thriveLogoLight}
                         alt="Thrive Powered by Travelomate"
                         className="h-6 md:h-9 w-auto thrive-logo-light"
                       />
                       <img
-                        src="./src/assets/images/artifacts/Thrive white.png"
+                        src={thriveLogoDark}
                         alt="Thrive Powered by Travelomate"
                         className="h-6 md:h-10 w-auto thrive-logo-dark"
                       />

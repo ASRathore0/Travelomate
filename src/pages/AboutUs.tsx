@@ -1,4 +1,5 @@
 import { motion } from 'motion/react';
+import { Link } from 'react-router-dom';
 import { ShieldCheck, Users, Target, Globe, Award, Zap, Heart, Clock, BarChart3, ChevronRight } from 'lucide-react';
 import { useDemo } from '../lib/DemoContext';
 
@@ -211,9 +212,9 @@ export default function AboutUs() {
                  >
                     Book Discovery Call <ChevronRight className="w-5 h-5" />
                  </button>
-                  <a href="./contact" className="px-10 py-5 bg-white/10 hover:bg-white/20 border border-white/20 rounded-2xl font-black text-lg transition-all">
+                  <Link to="/contact" className="px-10 py-5 bg-white/10 hover:bg-white/20 border border-white/20 rounded-2xl font-black text-lg transition-all">
                     Contact Us
-                 </a>
+                 </Link>
               </div>
            </motion.div>
         </div>

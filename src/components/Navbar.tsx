@@ -212,7 +212,9 @@ export default function Navbar() {
 
             <div className="hidden lg:flex items-center gap-4">
               <button 
-                onClick={() => navigate('/auth')}
+                onClick={() => {
+                  window.location.href = 'https://sports.travelomate.in/';
+                }}
                 className="flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold border border-foreground/20 hover:bg-foreground hover:text-background transition-all text-foreground"
               >
                 <LogIn className="w-4 h-4" /> Log In

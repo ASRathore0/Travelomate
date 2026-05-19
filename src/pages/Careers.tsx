@@ -3,30 +3,30 @@ import { Briefcase, MapPin, Clock, ArrowRight, Zap, Target, Heart } from 'lucide
 
 const positions = [
   {
-    title: "Senior Full Stack Engineer",
-    department: "Engineering",
-    location: "Delhi / Noida / Remote",
+    title: "Accountant",
+    department: "Finance",
+    location: "Greater Noida",
     type: "Full-time",
     salary: "Competitive"
   },
   {
-    title: "Lead Operations Manager",
-    department: "Sports Logistics",
-    location: "Mumbai",
+    title: "Sales",
+    department: "Sales",
+    location: "Greater Noida",
     type: "Full-time",
     salary: "Competitive"
   },
   {
-    title: "Customer Success Intelligence",
+    title: "Account Manager",
     department: "Client Services",
-    location: "Remote (Global)",
+    location: "Greater Noida",
     type: "Full-time",
     salary: "Competitive"
   },
   {
-    title: "UI/UX Product Designer",
-    department: "Design",
-    location: "Delhi / Noida",
+    title: "Travel Operation",
+    department: "Operations",
+    location: "Greater Noida",
     type: "Full-time",
     salary: "Competitive"
   }

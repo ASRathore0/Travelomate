@@ -49,6 +49,24 @@
   --electric-green: #F43F5E;
 }
 
+.thrive-logo-light {
+  display: inline-block !important;
+}
+
+.thrive-logo-dark {
+  display: none !important;
+}
+
+html.dark .thrive-logo-light,
+:root.dark .thrive-logo-light {
+  display: none !important;
+}
+
+html.dark .thrive-logo-dark,
+:root.dark .thrive-logo-dark {
+  display: inline-block !important;
+}
+
 @layer base {
   html {
     scroll-behavior: smooth;

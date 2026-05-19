@@ -46,7 +46,7 @@ export default function TraveloIntro() {
             <div className="relative w-full aspect-square md:aspect-[4/3] min-h-[400px] md:min-h-[520px] rounded-[2rem] md:rounded-[2.5rem] overflow-hidden bg-card-bg border border-foreground/10 shadow-[0_32px_64px_-16px_rgba(0,0,0,0.1)] transition-colors duration-500">
               {/* Refined Mock UI Background */}
               <div className="absolute inset-0 bg-linear-to-br from-brand/[0.05] via-transparent to-transparent" />
-              
+
               <div className="absolute inset-0 flex flex-col">
                 {/* Clean Dashboard Header */}
                 <div className="px-4 md:px-8 py-3 md:py-5 border-b border-foreground/10 flex items-center justify-between bg-card-bg/80 backdrop-blur-xl">
@@ -54,9 +54,17 @@ export default function TraveloIntro() {
                     <div className="w-8 h-8 md:w-9 md:h-9 rounded-xl bg-brand flex items-center justify-center shadow-lg shadow-brand/20">
                       <LayoutGrid className="text-white w-4 h-4 md:w-5 md:h-5" />
                     </div>
-                    <div>
-                      <span className="font-display font-black text-lg md:text-xl tracking-tighter block leading-none text-foreground">Travelo</span>
-                      <span className="text-[8px] md:text-[10px] font-bold text-foreground/50 uppercase tracking-widest">Enterprise v2.4</span>
+                    <div className="flex items-center">
+                      <img
+                        src="/src/assets/images/artifacts/thrive black (2).png"
+                        alt="Thrive Powered by Travelomate"
+                        className="h-6 md:h-9 w-auto thrive-logo-light"
+                      />
+                      <img
+                        src="/src/assets/images/artifacts/Thrive white.png"
+                        alt="Thrive Powered by Travelomate"
+                        className="h-6 md:h-10 w-auto thrive-logo-dark"
+                      />
                     </div>
                   </div>
                   <div className="flex items-center gap-2 md:gap-4">
@@ -83,8 +91,8 @@ export default function TraveloIntro() {
                         key={tab.id}
                         onClick={() => setActiveTab(tab.id as any)}
                         className={`w-10 h-10 md:w-12 md:h-12 rounded-xl md:rounded-2xl flex items-center justify-center transition-all duration-300 ${
-                          activeTab === tab.id 
-                            ? 'bg-brand text-white shadow-xl shadow-brand/30 scale-110' 
+                          activeTab === tab.id
+                            ? 'bg-brand text-white shadow-xl shadow-brand/30 scale-110'
                             : 'text-foreground/40 hover:text-foreground/70 hover:bg-foreground/10'
                         }`}
                       >
@@ -201,9 +209,11 @@ export default function TraveloIntro() {
                           </div>
 
                           <div className="p-4 md:p-6 rounded-[1.5rem] md:rounded-[2rem] bg-foreground/[0.04] border border-foreground/15 transition-colors relative overflow-hidden">
-                             <div className="absolute inset-0 opacity-[0.05] pointer-events-none text-foreground" 
-                                  style={{ backgroundImage: 'radial-gradient(circle, currentColor 1px, transparent 1px)', backgroundSize: '12px 12px' }} />
-                             
+                             <div
+                               className="absolute inset-0 opacity-[0.05] pointer-events-none text-foreground"
+                               style={{ backgroundImage: 'radial-gradient(circle, currentColor 1px, transparent 1px)', backgroundSize: '12px 12px' }}
+                             />
+
                              <div className="relative z-10 flex flex-col gap-4 md:gap-6">
                                 <div className="flex items-center justify-between">
                                   <div className="flex items-center gap-3 md:gap-4">
@@ -225,7 +235,7 @@ export default function TraveloIntro() {
                                    <div className="flex items-center gap-3 md:gap-4">
                                       <div className="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-brand shadow-[0_0_8px_rgba(var(--brand-rgb),0.5)]" />
                                       <div className="flex-1 h-px bg-foreground/20 relative">
-                                        <motion.div 
+                                        <motion.div
                                           className="absolute top-1/2 left-0 w-2 h-2 md:w-3 md:h-3 bg-brand rounded-full -translate-y-1/2 shadow-lg"
                                           animate={{ left: '70%' }}
                                           transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
@@ -280,7 +290,7 @@ export default function TraveloIntro() {
                   Next-Gen Self Booking
                 </span>
                 <h2 className="text-3xl sm:text-4xl lg:text-6xl font-display font-black tracking-tight leading-tight">
-                  Meet <span className="text-brand">Travelo.</span><br />
+                  Meet <span className="text-brand">Thrive.</span><br />
                   Empower Your Team to Fly Solo.
                 </h2>
                 <p className="mt-6 text-lg lg:text-xl text-foreground/60 leading-relaxed font-medium">

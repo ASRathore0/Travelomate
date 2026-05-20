@@ -8,6 +8,7 @@ import RoleSection from '../components/RoleSection';
 import Testimonials from '../components/Testimonials';
 import PartnersSection from '../components/PartnersSection';
 import CTABanner from '../components/CTABanner';
+import ScrollTopButton from '../components/ScrollTopButton';
 
 export default function Home() {
   return (
@@ -22,6 +23,7 @@ export default function Home() {
       <Testimonials />
       <PartnersSection />
       <CTABanner />
+      <ScrollTopButton />
     </div>
   );
 }

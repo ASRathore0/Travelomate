@@ -110,14 +110,14 @@ export default function Navbar() {
     <>
       <nav
         className={cn(
-          "sticky top-0 z-50 transition-all duration-300 w-full px-6 py-2.5",
+          "sticky top-0 z-50 transition-all duration-300 w-full px-4 sm:px-6 py-2.5",
           isScrolled 
             ? "bg-background/80 backdrop-blur-xl border-b border-foreground/10" 
             : "bg-transparent"
         )}
       >
         <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3 sm:gap-4">
             <Logo />
             <div className="hidden md:flex items-center pl-4 border-l border-foreground/10 h-10">
               <div className="flex flex-col justify-center leading-tight">
@@ -243,7 +243,7 @@ export default function Navbar() {
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
-              className="absolute top-full left-0 w-full bg-background border-b border-foreground/10 lg:hidden overflow-hidden shadow-2xl z-[100]"
+              className="absolute top-full left-0 w-full bg-background border-b border-foreground/10 lg:hidden overflow-hidden shadow-2xl z-[100] max-h-[calc(100vh-72px)] overflow-y-auto overscroll-contain"
             >
               <div className="py-8 px-6 space-y-6">
                 {navLinks.map((link) => (
@@ -251,7 +251,7 @@ export default function Navbar() {
                     {link.href.startsWith('/') && !link.href.includes('#') ? (
                       <Link 
                         to={link.href} 
-                        className="text-xl font-bold flex items-center justify-between text-foreground"
+                        className="text-lg sm:text-xl font-bold flex items-center justify-between text-foreground"
                         onClick={() => setIsMobileMenuOpen(false)}
                       >
                         {link.name}
@@ -262,7 +262,7 @@ export default function Navbar() {
                     ) : (
                       <a 
                         href={link.href} 
-                        className="text-xl font-bold block text-foreground"
+                        className="text-lg sm:text-xl font-bold block text-foreground"
                         onClick={() => !(link.dropdown || link.sections) && setIsMobileMenuOpen(false)}
                       >
                         {link.name}
@@ -274,7 +274,7 @@ export default function Navbar() {
                           <Link 
                             key={item.name} 
                             to={item.href} 
-                            className="flex items-center justify-between text-foreground/60 active:text-electric-green"
+                            className="flex items-center justify-between text-sm sm:text-base text-foreground/60 active:text-electric-green"
                             onClick={() => setIsMobileMenuOpen(false)}
                           >
                             {item.name}
@@ -290,7 +290,7 @@ export default function Navbar() {
                               <Link 
                                 key={item.name} 
                                 to={item.href} 
-                                className="flex items-center justify-between text-foreground/60 active:text-electric-green pl-2"
+                                className="flex items-center justify-between text-sm sm:text-base text-foreground/60 active:text-electric-green pl-2"
                                 onClick={() => setIsMobileMenuOpen(false)}
                               >
                                 {item.name}

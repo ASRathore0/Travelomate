@@ -83,7 +83,7 @@ export default function AudienceSection() {
               {/* The Solution */}
               <div className="flex items-center gap-3 mb-6">
                  <div className="h-px flex-1 bg-brand/10" />
-                 <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-brand">The Travelo Advantage</span>
+                 <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-brand">The Thrive Advantage</span>
                  <div className="h-px flex-1 bg-brand/10" />
               </div>
               
@@ -199,7 +199,7 @@ export default function AudienceSection() {
               {/* The Solution */}
               <div className="flex items-center gap-3 mb-6">
                  <div className="h-px flex-1 bg-corporate/10" />
-                 <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-corporate">The Travelo Advantage</span>
+                 <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-corporate">The Thrive Advantage</span>
                  <div className="h-px flex-1 bg-corporate/10" />
               </div>
 

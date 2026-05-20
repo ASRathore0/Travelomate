@@ -296,7 +296,7 @@ export default function TraveloIntro() {
                   Empower Your Team to Fly Solo.
                 </h2>
                 <p className="mt-6 text-lg lg:text-xl text-foreground/60 leading-relaxed font-medium">
-                  Travelo is the ultimate self-booking tool designed to give your employees independence while keeping your finance team in total control. No more email chains—just seamless booking within policy.
+                  Thrive is the ultimate self-booking tool designed to give your employees independence while keeping your finance team in total control. No more email chains—just seamless booking within policy.
                 </p>
               </div>
 
@@ -321,9 +321,14 @@ export default function TraveloIntro() {
                 ))}
               </div>
 
-              <div className="pt-8">
-                <button className="px-8 py-4 bg-brand text-white rounded-full font-bold hover:scale-105 active:scale-95 transition-all shadow-lg shadow-brand/20 flex items-center gap-3">
-                  Experience Travelo Demo
+              <div className="pt-6">
+                <button
+                  onClick={() => {
+                    window.location.href = 'https://sports.travelomate.in/';
+                  }}
+                  className="px-8 py-4 bg-brand text-white rounded-full font-bold hover:scale-105 active:scale-20 transition-all shadow-lg shadow-brand/20 flex items-center justify-center gap-3"
+                >
+                  Experience Thrive Demo
                   <ArrowRight className="w-5 h-5" />
                 </button>
               </div>

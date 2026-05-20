@@ -35,10 +35,11 @@ export default function Footer() {
           <div>
              <h4 className="font-bold mb-8 uppercase tracking-widest text-xs opacity-50">Solution</h4>
              <ul className="space-y-4 text-foreground/60 text-sm">
-                <li><a href="#" className="hover:text-brand transition-colors">Sports Travel</a></li>
-                <li><a href="#" className="hover:text-brand transition-colors">Corporate Travel</a></li>
-                <li><a href="#" className="hover:text-brand transition-colors">Expense Mgmt</a></li>
-                <li><a href="#" className="hover:text-brand transition-colors">Analytics</a></li>
+               <li><Link to="/sports-leagues" className="hover:text-brand transition-colors">Sports Travel</Link></li>
+               <li><Link to="/corporate-teams" className="hover:text-brand transition-colors">Corporate Travel</Link></li>
+               <li><Link to="/solutions/human-resources" className="hover:text-brand transition-colors">Human Resources</Link></li>
+               <li><Link to="/solutions/travel-managers" className="hover:text-brand transition-colors">Travel Managers</Link></li>
+               <li><Link to="/solutions/operations-teams" className="hover:text-brand transition-colors">Opeartions Teams</Link></li>
              </ul>
           </div>
 

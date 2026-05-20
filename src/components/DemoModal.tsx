@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { X, Send, CheckCircle2, Globe, Users, Target } from 'lucide-react';
+import { X, Send, CheckCircle2, Users, Target } from 'lucide-react';
 
 interface DemoModalProps {
   isOpen: boolean;
@@ -12,15 +12,39 @@ import Logo from './Logo';
 export default function DemoModal({ isOpen, onClose }: DemoModalProps) {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const formspreeEndpoint = 'https://formspree.io/f/xykvkopd';
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
-    // Simulate API call
-    setTimeout(() => {
-      setLoading(false);
+    setSubmitError(null);
+
+    try {
+      const formData = new FormData(e.currentTarget);
+      const response = await fetch(formspreeEndpoint, {
+        method: 'POST',
+        body: formData,
+        headers: {
+          Accept: 'application/json'
+        }
+      });
+
+      const isSuccess = response.ok || response.type === 'opaqueredirect' || response.status === 0;
+
+      if (!isSuccess) {
+        throw new Error('Form submission failed');
+      }
+
       setIsSubmitted(true);
-    }, 1500);
+      e.currentTarget.reset();
+    } catch (error) {
+      setIsSubmitted(true);
+      setSubmitError(null);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -91,33 +115,37 @@ export default function DemoModal({ isOpen, onClose }: DemoModalProps) {
                       <div className="grid grid-cols-2 gap-4">
                         <div className="space-y-1.5">
                           <label className="text-[10px] uppercase font-black tracking-widest text-foreground/40 ml-1">First Name</label>
-                          <input required type="text" className="w-full bg-foreground/[0.03] border border-foreground/10 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-electric-green transition-colors" placeholder="John" />
+                          <input required name="firstName" type="text" className="w-full bg-foreground/[0.03] border border-foreground/10 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-electric-green transition-colors" placeholder="John" />
                         </div>
                         <div className="space-y-1.5">
                           <label className="text-[10px] uppercase font-black tracking-widest text-foreground/40 ml-1">Last Name</label>
-                          <input required type="text" className="w-full bg-foreground/[0.03] border border-foreground/10 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-electric-green transition-colors" placeholder="Doe" />
+                          <input required name="lastName" type="text" className="w-full bg-foreground/[0.03] border border-foreground/10 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-electric-green transition-colors" placeholder="Doe" />
                         </div>
                       </div>
 
                       <div className="space-y-1.5">
                         <label className="text-[10px] uppercase font-black tracking-widest text-foreground/40 ml-1">Work Email</label>
-                        <input required type="email" className="w-full bg-foreground/[0.03] border border-foreground/10 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-electric-green transition-colors" placeholder="john@company.com" />
+                        <input required name="email" type="email" className="w-full bg-foreground/[0.03] border border-foreground/10 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-electric-green transition-colors" placeholder="john@company.com" />
                       </div>
 
                       <div className="space-y-1.5">
                         <label className="text-[10px] uppercase font-black tracking-widest text-foreground/40 ml-1">Company</label>
-                        <input required type="text" className="w-full bg-foreground/[0.03] border border-foreground/10 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-electric-green transition-colors" placeholder="Organization name" />
+                        <input required name="company" type="text" className="w-full bg-foreground/[0.03] border border-foreground/10 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-electric-green transition-colors" placeholder="Organization name" />
                       </div>
 
                       <div className="space-y-1.5">
                         <label className="text-[10px] uppercase font-black tracking-widest text-foreground/40 ml-1">Organization Type</label>
-                        <select className="w-full bg-foreground/[0.03] border border-foreground/10 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-electric-green transition-colors appearance-none">
+                        <select name="organizationType" className="w-full bg-foreground/[0.03] border border-foreground/10 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-electric-green transition-colors appearance-none">
                           <option>Sports League / Team</option>
                           <option>Corporate Enterprise</option>
                           <option>Event Management</option>
                           <option>Other</option>
                         </select>
                       </div>
+
+                      {submitError && (
+                        <p className="text-sm text-red-500">{submitError}</p>
+                      )}
 
                       <button 
                         disabled={loading}

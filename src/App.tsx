@@ -3,15 +3,17 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { HashRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import Seo from './components/Seo';
 import Home from './pages/Home';
 import SportsLeagues from './pages/SportsLeagues';
 import CorporateTeams from './pages/CorporateTeams';
 import SelfBookingTool from './pages/SelfBookingTool';
 import AboutUs from './pages/AboutUs';
 import Blog from './pages/Blog';
+import BlogPost from './pages/BlogPost';
 import ContactUs from './pages/ContactUs';
 import Journey from './pages/Journey';
 import Careers from './pages/Careers';
@@ -37,6 +39,7 @@ function AppContent() {
   
   return (
     <div className="flex flex-col min-h-screen">
+      <Seo />
       <Navbar />
       <main className="flex-grow">
         <Routes>
@@ -46,6 +49,7 @@ function AppContent() {
           <Route path="/self-booking" element={<SelfBookingTool />} />
           <Route path="/about" element={<AboutUs />} />
           <Route path="/blog" element={<Blog />} />
+          <Route path="/blog/:slug" element={<BlogPost />} />
           <Route path="/contact" element={<ContactUs />} />
           <Route path="/journey" element={<Journey />} />
           <Route path="/careers" element={<Careers />} />

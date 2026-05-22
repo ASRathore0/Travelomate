@@ -1,29 +1,7 @@
 import { motion } from 'motion/react';
-import { Bookmark, Clock, ChevronRight, Search } from 'lucide-react';
-
-const posts = [
-  {
-    title: "The Future of Sports Logistics: Moving 300 Athletes with Zero Errors",
-    category: "Operations",
-    date: "May 5, 2026",
-    readTime: "8 min read",
-    image: "https://www.lastmilelogisticssolutions.com/wp-content/uploads/Pop-Up-Sport-Logistics.jpg"
-  },
-  {
-    title: "How Al is Optimizing Corporate Travel Budgets in 2026",
-    category: "Technology",
-    date: "Apr 28, 2026",
-    readTime: "6 min read",
-    image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=800"
-  },
-  {
-    title: "Sustainability in Tourism: Reducing Carbon Footprints for Teams",
-    category: "Sustainability",
-    date: "Apr 15, 2026",
-    readTime: "10 min read",
-    image: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&q=80&w=800"
-  }
-];
+import { Clock, ChevronRight, Search } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { blogPosts } from '../lib/blogPosts';
 
 export default function Blog() {
   return (
@@ -55,40 +33,45 @@ export default function Blog() {
 
       <section className="max-w-7xl mx-auto px-6">
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {posts.map((post, i) => (
+          {blogPosts.map((post, i) => (
             <motion.article 
               key={i}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.1 }}
-              className="group cursor-pointer"
+              className="group"
             >
-              <div className="relative aspect-[16/10] rounded-[32px] overflow-hidden mb-6 border border-border-subtle">
-                <img 
-                  src={post.image} 
-                  alt={post.title} 
-                  className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 scale-105 group-hover:scale-100"
-                />
-                <div className="absolute top-4 left-4">
-                  <span className="px-3 py-1 bg-white/90 dark:bg-navy/90 backdrop-blur-md rounded-full text-[10px] font-black uppercase tracking-widest text-brand">
-                    {post.category}
-                  </span>
+              <Link to={`/blog/${post.slug}`} className="block">
+                <div className="relative aspect-[16/10] rounded-[32px] overflow-hidden mb-6 border border-border-subtle">
+                  <img 
+                    src={post.image} 
+                    alt={post.title} 
+                    className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 scale-105 group-hover:scale-100"
+                  />
+                  <div className="absolute top-4 left-4">
+                    <span className="px-3 py-1 bg-white/90 dark:bg-navy/90 backdrop-blur-md rounded-full text-[10px] font-black uppercase tracking-widest text-brand">
+                      {post.category}
+                    </span>
+                  </div>
                 </div>
-              </div>
-              
-              <div className="flex items-center gap-4 text-[10px] uppercase font-black tracking-[0.2em] text-foreground/40 mb-4">
-                <span>{post.date}</span>
-                <span className="w-1 h-1 rounded-full bg-brand" />
-                <span className="flex items-center gap-1"><Clock className="w-3 h-3" /> {post.readTime}</span>
-              </div>
-              
-              <h2 className="text-2xl font-bold mb-4 group-hover:text-brand transition-colors leading-tight">
-                {post.title}
-              </h2>
-              
-              <div className="flex items-center gap-2 text-brand font-black text-sm uppercase tracking-widest group-hover:gap-4 transition-all">
-                Read Article <ChevronRight className="w-5 h-5" />
-              </div>
+                
+                <div className="flex items-center gap-4 text-[10px] uppercase font-black tracking-[0.2em] text-foreground/40 mb-4">
+                  <span>{post.date}</span>
+                  <span className="w-1 h-1 rounded-full bg-brand" />
+                  <span className="flex items-center gap-1"><Clock className="w-3 h-3" /> {post.readTime}</span>
+                </div>
+                
+                <h2 className="text-2xl font-bold mb-4 group-hover:text-brand transition-colors leading-tight">
+                  {post.title}
+                </h2>
+                <p className="text-sm text-foreground/60 leading-relaxed mb-6">
+                  {post.excerpt}
+                </p>
+                
+                <div className="flex items-center gap-2 text-brand font-black text-sm uppercase tracking-widest group-hover:gap-4 transition-all">
+                  Read Article <ChevronRight className="w-5 h-5" />
+                </div>
+              </Link>
             </motion.article>
           ))}
         </div>

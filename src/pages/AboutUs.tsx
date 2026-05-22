@@ -1,13 +1,62 @@
 import { motion } from 'motion/react';
+import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { ShieldCheck, Users, Target, Globe, Award, Zap, Heart, Clock, BarChart3, ChevronRight } from 'lucide-react';
 import { useDemo } from '../lib/DemoContext';
 
 export default function AboutUs() {
   const { openDemo } = useDemo();
+  const faqItems = [
+    {
+      question: 'What is Travelomate?',
+      answer:
+        'Travelomate is a travel intelligence platform that manages corporate and team travel end to end, combining automation with human expertise.'
+    },
+    {
+      question: 'Who is Travelomate built for?',
+      answer:
+        'We serve sports leagues, corporate teams, and operations-heavy organizations that need reliable, policy-compliant travel at scale.'
+    },
+    {
+      question: 'Do you handle group travel and complex itineraries?',
+      answer:
+        'Yes. We specialize in multi-city itineraries, group bookings, and logistics-heavy travel with tight timelines.'
+    },
+    {
+      question: 'How does support work?',
+      answer:
+        'Clients have dedicated account managers and 24/7 human support for urgent changes, disruptions, and on-trip assistance.'
+    },
+    {
+      question: 'Where do you operate?',
+      answer:
+        'We have deep India operations and global coverage through our supplier and airline networks.'
+    },
+    {
+      question: 'How do we get started?',
+      answer:
+        'Book a discovery call or request a demo, and we will map a program based on your team size, policy, and travel patterns.'
+    }
+  ];
+
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqItems.map((item) => ({
+      '@type': 'Question',
+      name: item.question.trim(),
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: item.answer
+      }
+    }))
+  };
 
   return (
     <div className="pt-20 pb-20 bg-background text-foreground overflow-hidden">
+      <Helmet>
+        <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
+      </Helmet>
       {/* Hero Section */}
       <section className="max-w-7xl mx-auto px-6 mb-32 relative">
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-brand/5 blur-[120px] -mr-64 -mt-32 rounded-full pointer-events-none" />
@@ -184,6 +233,24 @@ export default function AboutUs() {
                 </div>
               ))}
            </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="max-w-7xl mx-auto px-6 mb-32">
+        <div className="max-w-3xl">
+          <h2 className="text-4xl font-display font-bold mb-4">Frequently Asked Questions</h2>
+          <p className="text-foreground/60 mb-10">
+            Clear answers to the most common questions about Travelomate, our clients, and how we work.
+          </p>
+        </div>
+        <div className="grid md:grid-cols-2 gap-6">
+          {faqItems.map((item, index) => (
+            <div key={index} className="p-8 bg-card-bg border border-border-subtle rounded-[28px]">
+              <h3 className="text-lg font-bold mb-3">{item.question.trim()}</h3>
+              <p className="text-sm text-foreground/60 leading-relaxed">{item.answer}</p>
+            </div>
+          ))}
         </div>
       </section>
 

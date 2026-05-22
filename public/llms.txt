@@ -1,0 +1,32 @@
+# Travelomate
+
+## About
+Travelomate is a travel intelligence platform for sports leagues and enterprise teams, combining automation with 24/7 human support.
+
+## Primary URLs
+- https://travelomate.co.in/
+- https://travelomate.co.in/sports-leagues
+- https://travelomate.co.in/corporate-teams
+- https://travelomate.co.in/self-booking
+- https://travelomate.co.in/solutions/finance-teams
+- https://travelomate.co.in/solutions/travel-managers
+- https://travelomate.co.in/solutions/executive-assistants
+- https://travelomate.co.in/solutions/human-resources
+- https://travelomate.co.in/solutions/operations-teams
+- https://travelomate.co.in/solutions/healthcare
+- https://travelomate.co.in/solutions/construction
+- https://travelomate.co.in/solutions/software-tech
+- https://travelomate.co.in/solutions/manufacturing
+- https://travelomate.co.in/solutions/transportation-logistics
+
+## Company
+- https://travelomate.co.in/about
+- https://travelomate.co.in/journey
+- https://travelomate.co.in/careers
+- https://travelomate.co.in/contact
+
+## Blog
+- https://travelomate.co.in/blog
+
+## Contact
+Email: support@travelomate.in

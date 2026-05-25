@@ -70,8 +70,7 @@ export const SEO_ENTRIES: SeoEntry[] = [
   {
     path: '/auth',
     title: 'Travelomate Login',
-    description: 'Log in to manage your organization travel and policy workspace.',
-    noindex: true
+    description: 'Log in to manage your organization travel and policy workspace.'
   },
   {
     path: '/solutions/finance-teams',
@@ -134,6 +133,53 @@ export const SEO_ENTRIES: SeoEntry[] = [
       'Crew rotations, disruption handling, and specialized fares for logistics networks.'
   }
 ];
+
+const BREADCRUMB_LABELS: Record<string, string> = {
+  '/': 'Home',
+  '/about': 'About',
+  '/blog': 'Blog',
+  '/careers': 'Careers',
+  '/contact': 'Contact',
+  '/auth': 'Login',
+  '/journey': 'Our Journey',
+  '/sports-leagues': 'Sports Leagues',
+  '/corporate-teams': 'Corporate Teams',
+  '/self-booking': 'Self-Booking Tool',
+  '/solutions/finance-teams': 'Finance Teams',
+  '/solutions/travel-managers': 'Travel Managers',
+  '/solutions/executive-assistants': 'Executive Assistants',
+  '/solutions/human-resources': 'Human Resources',
+  '/solutions/operations-teams': 'Operations Teams',
+  '/solutions/healthcare': 'Healthcare',
+  '/solutions/construction': 'Construction',
+  '/solutions/software-tech': 'Software and Tech',
+  '/solutions/manufacturing': 'Manufacturing',
+  '/solutions/transportation-logistics': 'Transportation and Logistics'
+};
+
+export type BreadcrumbItem = {
+  name: string;
+  url: string;
+};
+
+export function getBreadcrumbs(pathname: string, baseUrl: string): BreadcrumbItem[] {
+  const normalized = pathname.length > 1 ? pathname.replace(/\/$/, '') : pathname;
+  const crumbs: BreadcrumbItem[] = [
+    {
+      name: BREADCRUMB_LABELS['/'],
+      url: baseUrl
+    }
+  ];
+
+  if (normalized !== '/' && BREADCRUMB_LABELS[normalized]) {
+    crumbs.push({
+      name: BREADCRUMB_LABELS[normalized],
+      url: `${baseUrl}${normalized}`
+    });
+  }
+
+  return crumbs;
+}
 
 export function getSeoForPath(pathname: string): SeoEntry {
   const normalized = pathname.length > 1 ? pathname.replace(/\/$/, '') : pathname;

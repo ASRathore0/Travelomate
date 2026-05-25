@@ -5,6 +5,7 @@ import {
   DEFAULT_TITLE,
   SITE_NAME,
   SITE_URL,
+  getBreadcrumbs,
   getSeoForPath
 } from '../lib/seo';
 import { applyHead, removeJsonLd } from '../lib/head';
@@ -50,6 +51,18 @@ export default function Seo() {
     }
   };
 
+  const breadcrumbs = getBreadcrumbs(pathname, SITE_URL);
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: breadcrumbs.map((crumb, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: crumb.name,
+      item: crumb.url
+    }))
+  };
+
   useEffect(() => {
     const robots = seo.noindex ? 'noindex, nofollow' : 'index, follow';
 
@@ -62,7 +75,8 @@ export default function Seo() {
       jsonLd: [
         { id: 'org', data: organizationSchema },
         { id: 'site', data: websiteSchema },
-        { id: 'page', data: webPageSchema }
+        { id: 'page', data: webPageSchema },
+        { id: 'breadcrumb', data: breadcrumbSchema }
       ]
     });
 
@@ -70,8 +84,9 @@ export default function Seo() {
       removeJsonLd('org');
       removeJsonLd('site');
       removeJsonLd('page');
+      removeJsonLd('breadcrumb');
     };
-  }, [canonicalUrl, description, seo.noindex, title]);
+  }, [canonicalUrl, description, seo.noindex, title, pathname]);
 
   return null;
 }

@@ -45,16 +45,47 @@ export default function BlogPost() {
     }
   };
 
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: SITE_URL
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Blog',
+        item: `${SITE_URL}/blog`
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: post.title,
+        item: canonicalUrl
+      }
+    ]
+  };
+
   useEffect(() => {
     applyHead({
       title: post.title,
       description: post.excerpt,
       canonicalUrl,
       ogType: 'article',
-      jsonLd: [{ id: `blog-${post.slug}`, data: blogSchema }]
+      jsonLd: [
+        { id: `blog-${post.slug}`, data: blogSchema },
+        { id: `breadcrumb-${post.slug}`, data: breadcrumbSchema }
+      ]
     });
 
-    return () => removeJsonLd(`blog-${post.slug}`);
+    return () => {
+      removeJsonLd(`blog-${post.slug}`);
+      removeJsonLd(`breadcrumb-${post.slug}`);
+    };
   }, [canonicalUrl, post.excerpt, post.slug, post.title]);
 
   return (

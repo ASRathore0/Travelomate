@@ -1,4 +1,4 @@
-import { Helmet } from 'react-helmet-async';
+import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import {
   DEFAULT_DESCRIPTION,
@@ -7,9 +7,14 @@ import {
   SITE_URL,
   getSeoForPath
 } from '../lib/seo';
+import { applyHead, removeJsonLd } from '../lib/head';
 
 export default function Seo() {
   const { pathname } = useLocation();
+  if (pathname.startsWith('/blog/') && pathname !== '/blog') {
+    return null;
+  }
+
   const seo = getSeoForPath(pathname);
 
   const title = seo.title || DEFAULT_TITLE;
@@ -45,33 +50,28 @@ export default function Seo() {
     }
   };
 
-  return (
-    <Helmet>
-      <title>{title}</title>
-      <meta name="description" content={description} />
-      <link rel="canonical" href={canonicalUrl} />
+  useEffect(() => {
+    const robots = seo.noindex ? 'noindex, nofollow' : 'index, follow';
 
-      <meta property="og:site_name" content={SITE_NAME} />
-      <meta property="og:title" content={title} />
-      <meta property="og:description" content={description} />
-      <meta property="og:url" content={canonicalUrl} />
-      <meta property="og:type" content="website" />
+    applyHead({
+      title,
+      description,
+      canonicalUrl,
+      robots,
+      ogType: 'website',
+      jsonLd: [
+        { id: 'org', data: organizationSchema },
+        { id: 'site', data: websiteSchema },
+        { id: 'page', data: webPageSchema }
+      ]
+    });
 
-      <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:title" content={title} />
-      <meta name="twitter:description" content={description} />
+    return () => {
+      removeJsonLd('org');
+      removeJsonLd('site');
+      removeJsonLd('page');
+    };
+  }, [canonicalUrl, description, seo.noindex, title]);
 
-      {seo.noindex ? (
-        <meta name="robots" content="noindex, nofollow" />
-      ) : (
-        <meta name="robots" content="index, follow" />
-      )}
-
-      <script type="application/ld+json">
-        {JSON.stringify(organizationSchema)}
-      </script>
-      <script type="application/ld+json">{JSON.stringify(websiteSchema)}</script>
-      <script type="application/ld+json">{JSON.stringify(webPageSchema)}</script>
-    </Helmet>
-  );
+  return null;
 }

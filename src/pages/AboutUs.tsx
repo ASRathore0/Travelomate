@@ -1,8 +1,9 @@
+import { useEffect } from 'react';
 import { motion } from 'motion/react';
-import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { ShieldCheck, Users, Target, Globe, Award, Zap, Heart, Clock, BarChart3, ChevronRight } from 'lucide-react';
 import { useDemo } from '../lib/DemoContext';
+import { removeJsonLd, setJsonLd } from '../lib/head';
 
 export default function AboutUs() {
   const { openDemo } = useDemo();
@@ -52,11 +53,13 @@ export default function AboutUs() {
     }))
   };
 
+  useEffect(() => {
+    setJsonLd('faq', faqSchema);
+    return () => removeJsonLd('faq');
+  }, []);
+
   return (
     <div className="pt-20 pb-20 bg-background text-foreground overflow-hidden">
-      <Helmet>
-        <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
-      </Helmet>
       {/* Hero Section */}
       <section className="max-w-7xl mx-auto px-6 mb-32 relative">
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-brand/5 blur-[120px] -mr-64 -mt-32 rounded-full pointer-events-none" />

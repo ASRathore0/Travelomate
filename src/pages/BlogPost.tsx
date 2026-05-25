@@ -1,8 +1,9 @@
-import { Helmet } from 'react-helmet-async';
+import { useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { Calendar, Clock, ChevronLeft } from 'lucide-react';
 import { blogPosts } from '../lib/blogPosts';
 import { SITE_NAME, SITE_URL } from '../lib/seo';
+import { applyHead, removeJsonLd } from '../lib/head';
 
 export default function BlogPost() {
   const { slug } = useParams();
@@ -44,20 +45,20 @@ export default function BlogPost() {
     }
   };
 
+  useEffect(() => {
+    applyHead({
+      title: post.title,
+      description: post.excerpt,
+      canonicalUrl,
+      ogType: 'article',
+      jsonLd: [{ id: `blog-${post.slug}`, data: blogSchema }]
+    });
+
+    return () => removeJsonLd(`blog-${post.slug}`);
+  }, [canonicalUrl, post.excerpt, post.slug, post.title]);
+
   return (
     <div className="pt-20 pb-24 bg-background text-foreground">
-      <Helmet>
-        <title>{post.title}</title>
-        <meta name="description" content={post.excerpt} />
-        <link rel="canonical" href={canonicalUrl} />
-        <meta property="og:title" content={post.title} />
-        <meta property="og:description" content={post.excerpt} />
-        <meta property="og:url" content={canonicalUrl} />
-        <meta property="og:type" content="article" />
-        <meta name="twitter:title" content={post.title} />
-        <meta name="twitter:description" content={post.excerpt} />
-        <script type="application/ld+json">{JSON.stringify(blogSchema)}</script>
-      </Helmet>
 
       <div className="max-w-4xl mx-auto px-6">
         <Link

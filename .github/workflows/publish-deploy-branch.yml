@@ -4,6 +4,9 @@ on:
   push:
     branches: ["main", "master"]
 
+permissions:
+  contents: write
+
 concurrency:
   group: publish-deploy-branch
   cancel-in-progress: true

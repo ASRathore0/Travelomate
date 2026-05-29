@@ -19,7 +19,7 @@ const testimonials = [
   },
   {
     quote: "Travelomate doesn't just book tickets; they engineer solutions. Their response to travel disruptions at 3 AM is consistently under 15 minutes. Pure operational mastery.",
-    author: "Arjun Mehta",
+    author: "Amit Mehta",
     role: "CEO",
     avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=150",
     company: "BlueChip Innovations"

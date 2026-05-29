@@ -54,4 +54,4 @@ jobs:
             exit 0
           fi
           git commit -m "Publish dist"
-          git push origin deploy
+          git push --force origin deploy

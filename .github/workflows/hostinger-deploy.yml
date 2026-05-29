@@ -37,6 +37,7 @@ jobs:
           protocol: ftp
           local-dir: dist/
           server-dir: ${{ secrets.HOSTINGER_FTP_PATH }}
+          dangerous-clean-slate: true
           exclude: |
             **/.git*
             **/.github*

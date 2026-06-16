@@ -1,9 +1,11 @@
 import { motion } from 'motion/react';
 import { Clock, ChevronRight, Search } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { blogPosts } from '../lib/blogPosts';
+import { getPublishedBlogPosts } from '../lib/blogPosts';
 
 export default function Blog() {
+  const blogPosts = getPublishedBlogPosts();
+
   return (
     <div className="pt-10 pb-20 bg-background text-foreground overflow-hidden">
       <section className="max-w-7xl mx-auto px-6 mb-20 relative text-center">
@@ -20,6 +22,11 @@ export default function Blog() {
           <h1 className="text-4xl sm:text-6xl lg:text-7xl font-display font-black leading-[0.9] tracking-tighter mb-8 italic">
             Thinking <span className="text-brand not-italic">Better</span> Travel.
           </h1>
+          {/* <div className="mb-8 flex flex-wrap items-center justify-center gap-3 text-sm">
+            <Link to="/admin/blogs" className="px-4 py-2 rounded-full border border-foreground/10 hover:bg-foreground/5 transition-colors font-bold">
+              Open Admin Panel
+            </Link>
+          </div> */}
           <div className="relative max-w-xl mx-auto">
             <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-foreground/30 w-5 h-5" />
             <input 

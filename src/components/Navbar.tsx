@@ -89,6 +89,7 @@ export default function Navbar() {
          
         { name: 'Our Journey', href: '/journey' },
         { name: 'Blog', href: '/blog' },
+        { name: 'Blog Admin', href: '/admin/blogs', isNew: true },
         { name: 'News Letter', href: '/' },
         { name: 'Research & Development', href: '/' },
         

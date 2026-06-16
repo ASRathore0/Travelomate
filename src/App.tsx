@@ -14,6 +14,7 @@ import SelfBookingTool from './pages/SelfBookingTool';
 import AboutUs from './pages/AboutUs';
 import Blog from './pages/Blog';
 import BlogPost from './pages/BlogPost';
+import BlogAdmin from './pages/BlogAdmin';
 import ContactUs from './pages/ContactUs';
 import Journey from './pages/Journey';
 import Careers from './pages/Careers';
@@ -50,6 +51,7 @@ function AppContent() {
           <Route path="/about" element={<AboutUs />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:slug" element={<BlogPost />} />
+          <Route path="/admin/blogs" element={<BlogAdmin />} />
           <Route path="/contact" element={<ContactUs />} />
           <Route path="/journey" element={<Journey />} />
           <Route path="/careers" element={<Careers />} />

@@ -29,15 +29,7 @@ export default function Footer() {
                 <li><Link to="/blog" className="hover:text-brand transition-colors">Blog</Link></li>
                 <li><Link to="/careers" className="hover:text-brand transition-colors">Careers</Link></li>
                 <li><Link to="/contact" className="hover:text-brand transition-colors">Contact Us</Link></li>
-                <li>
-                  <a
-                    href="https://sports.travelomate.in/"
-                    className="hover:text-brand transition-colors"
-                    rel="noreferrer"
-                  >
-                    Login
-                  </a>
-                </li>
+                <li><Link to="/admin/blogs" className="hover:text-brand transition-colors">Admin Login</Link></li>
              </ul>
           </div>
 

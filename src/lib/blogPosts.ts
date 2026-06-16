@@ -6,8 +6,10 @@ export type BlogPost = {
   readTime: string;
   image: string;
   excerpt: string;
-  content: Array<{ heading: string; paragraphs: string[]; bullets?: string[] }>;
+  content: Array<{ heading?: string; paragraphs: string[]; bullets?: string[] }>;
 };
+
+const BLOG_STORAGE_KEY = 'travelomate.blogPosts';
 
 export const blogPosts: BlogPost[] = [
   {
@@ -191,3 +193,69 @@ export const blogPosts: BlogPost[] = [
     ]
   }
 ];
+
+const isBrowser = typeof window !== 'undefined';
+
+function readStoredBlogPosts(): BlogPost[] {
+  if (!isBrowser) {
+    return [];
+  }
+
+  try {
+    const storedValue = window.localStorage.getItem(BLOG_STORAGE_KEY);
+
+    if (!storedValue) {
+      return [];
+    }
+
+    const parsedValue = JSON.parse(storedValue) as BlogPost[];
+    return Array.isArray(parsedValue) ? parsedValue : [];
+  } catch {
+    return [];
+  }
+}
+
+function writeStoredBlogPosts(posts: BlogPost[]) {
+  if (!isBrowser) {
+    return;
+  }
+
+  window.localStorage.setItem(BLOG_STORAGE_KEY, JSON.stringify(posts));
+}
+
+export function getPublishedBlogPosts() {
+  const storedPosts = readStoredBlogPosts();
+  const storedSlugs = new Set(storedPosts.map((post) => post.slug));
+
+  return [...storedPosts, ...blogPosts.filter((post) => !storedSlugs.has(post.slug))];
+}
+
+export function getBlogPostBySlug(slug: string) {
+  return getPublishedBlogPosts().find((post) => post.slug === slug);
+}
+
+export function getCustomBlogPosts() {
+  return readStoredBlogPosts();
+}
+
+export function upsertCustomBlogPost(post: BlogPost) {
+  const currentPosts = readStoredBlogPosts();
+  const nextPosts = [post, ...currentPosts.filter((item) => item.slug !== post.slug)];
+
+  writeStoredBlogPosts(nextPosts);
+  return nextPosts;
+}
+
+export function removeCustomBlogPost(slug: string) {
+  const nextPosts = readStoredBlogPosts().filter((post) => post.slug !== slug);
+  writeStoredBlogPosts(nextPosts);
+  return nextPosts;
+}
+
+export function clearCustomBlogPosts() {
+  if (!isBrowser) {
+    return;
+  }
+
+  window.localStorage.removeItem(BLOG_STORAGE_KEY);
+}

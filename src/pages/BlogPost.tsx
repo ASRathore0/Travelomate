@@ -1,13 +1,13 @@
 import { useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { Calendar, Clock, ChevronLeft } from 'lucide-react';
-import { blogPosts } from '../lib/blogPosts';
+import { getBlogPostBySlug } from '../lib/blogPosts';
 import { SITE_NAME, SITE_URL } from '../lib/seo';
 import { applyHead, removeJsonLd } from '../lib/head';
 
 export default function BlogPost() {
   const { slug } = useParams();
-  const post = blogPosts.find((item) => item.slug === slug);
+  const post = slug ? getBlogPostBySlug(slug) : undefined;
 
   if (!post) {
     return (
@@ -123,7 +123,7 @@ export default function BlogPost() {
         <div className="space-y-12">
           {post.content.map((section, index) => (
             <section key={index} className="space-y-4">
-              <h2 className="text-2xl font-bold">{section.heading}</h2>
+              {section.heading && <h2 className="text-2xl font-bold">{section.heading}</h2>}
               {section.paragraphs.map((text, paragraphIndex) => (
                 <p key={paragraphIndex} className="text-foreground/70 leading-relaxed">
                   {text}

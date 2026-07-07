@@ -89,6 +89,7 @@ export default function Navbar() {
          
         { name: 'Our Journey', href: '/journey' },
         { name: 'Blog', href: '/blog' },
+        { name: 'Placard Print', href: '/placard-print', isNew: true },
         { name: 'Blog Admin', href: '/admin/blogs', isNew: true },
         { name: 'News Letter', href: '/' },
         { name: 'Research & Development', href: '/' },
@@ -262,7 +263,7 @@ export default function Navbar() {
                       </Link>
                     ) : (
                       <a 
-                        href={link.href} 
+                        href={link.href.startsWith('/#') ? link.href : ((link.dropdown || link.sections) ? '#' : link.href)} 
                         className="text-lg sm:text-xl font-bold block text-foreground"
                         onClick={() => !(link.dropdown || link.sections) && setIsMobileMenuOpen(false)}
                       >

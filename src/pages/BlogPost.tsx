@@ -1,76 +1,85 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { Calendar, Clock, ChevronLeft } from 'lucide-react';
 import { getBlogPostBySlug } from '../lib/blogPosts';
 import { SITE_NAME, SITE_URL } from '../lib/seo';
 import { applyHead, removeJsonLd } from '../lib/head';
+import { loadBlogPostBySlug } from '../lib/blogService';
 
 export default function BlogPost() {
   const { slug } = useParams();
-  const post = slug ? getBlogPostBySlug(slug) : undefined;
-
-  if (!post) {
-    return (
-      <div className="pt-24 pb-24 bg-background text-foreground">
-        <div className="max-w-4xl mx-auto px-6">
-          <p className="text-sm uppercase tracking-widest text-foreground/40 mb-4">Not Found</p>
-          <h1 className="text-4xl font-display font-bold mb-6">This article does not exist.</h1>
-          <Link to="/blog" className="text-brand font-bold">
-            Back to Blog
-          </Link>
-        </div>
-      </div>
-    );
-  }
-
-  const canonicalUrl = `${SITE_URL}/blog/${post.slug}`;
-  const blogSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'BlogPosting',
-    headline: post.title,
-    description: post.excerpt,
-    datePublished: post.date,
-    image: post.image,
-    author: {
-      '@type': 'Organization',
-      name: SITE_NAME
-    },
-    publisher: {
-      '@type': 'Organization',
-      name: SITE_NAME
-    },
-    mainEntityOfPage: {
-      '@type': 'WebPage',
-      '@id': canonicalUrl
-    }
-  };
-
-  const breadcrumbSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      {
-        '@type': 'ListItem',
-        position: 1,
-        name: 'Home',
-        item: SITE_URL
-      },
-      {
-        '@type': 'ListItem',
-        position: 2,
-        name: 'Blog',
-        item: `${SITE_URL}/blog`
-      },
-      {
-        '@type': 'ListItem',
-        position: 3,
-        name: post.title,
-        item: canonicalUrl
-      }
-    ]
-  };
+  const [post, setPost] = useState(() => (slug ? getBlogPostBySlug(slug) : undefined));
 
   useEffect(() => {
+    if (!slug) {
+      return;
+    }
+
+    let active = true;
+
+    loadBlogPostBySlug(slug).then((loadedPost) => {
+      if (active) {
+        setPost(loadedPost);
+      }
+    });
+
+    return () => {
+      active = false;
+    };
+  }, [slug]);
+
+  useEffect(() => {
+    if (!post) {
+      return;
+    }
+
+    const canonicalUrl = `${SITE_URL}/blog/${post.slug}`;
+    const blogSchema = {
+      '@context': 'https://schema.org',
+      '@type': 'BlogPosting',
+      headline: post.title,
+      description: post.excerpt,
+      datePublished: post.date,
+      image: post.image,
+      author: {
+        '@type': 'Organization',
+        name: SITE_NAME
+      },
+      publisher: {
+        '@type': 'Organization',
+        name: SITE_NAME
+      },
+      mainEntityOfPage: {
+        '@type': 'WebPage',
+        '@id': canonicalUrl
+      }
+    };
+
+    const breadcrumbSchema = {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Home',
+          item: SITE_URL
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'Blog',
+          item: `${SITE_URL}/blog`
+        },
+        {
+          '@type': 'ListItem',
+          position: 3,
+          name: post.title,
+          item: canonicalUrl
+        }
+      ]
+    };
+
     applyHead({
       title: post.title,
       description: post.excerpt,
@@ -86,7 +95,21 @@ export default function BlogPost() {
       removeJsonLd(`blog-${post.slug}`);
       removeJsonLd(`breadcrumb-${post.slug}`);
     };
-  }, [canonicalUrl, post.excerpt, post.slug, post.title]);
+  }, [post]);
+
+  if (!post) {
+    return (
+      <div className="pt-24 pb-24 bg-background text-foreground">
+        <div className="max-w-4xl mx-auto px-6">
+          <p className="text-sm uppercase tracking-widest text-foreground/40 mb-4">Not Found</p>
+          <h1 className="text-4xl font-display font-bold mb-6">This article does not exist.</h1>
+          <Link to="/blog" className="text-brand font-bold">
+            Back to Blog
+          </Link>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="pt-20 pb-24 bg-background text-foreground">

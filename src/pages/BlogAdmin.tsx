@@ -14,12 +14,14 @@ import {
   Trash2
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { BlogPost } from '../lib/blogPosts';
 import {
-  BlogPost,
-  getCustomBlogPosts,
-  removeCustomBlogPost,
-  upsertCustomBlogPost
-} from '../lib/blogPosts';
+  clearAllCustomBlogPosts,
+  deleteCustomBlogPost,
+  isSharedBlogEnabled,
+  loadCustomBlogPosts,
+  saveCustomBlogPost
+} from '../lib/blogService';
 
 type SectionForm = {
   heading: string;
@@ -70,16 +72,27 @@ const splitLines = (value: string) =>
 
 export default function BlogAdmin() {
   const navigate = useNavigate();
-  const [customPosts, setCustomPosts] = useState<BlogPost[]>(() => getCustomBlogPosts());
+  const [customPosts, setCustomPosts] = useState<BlogPost[]>([]);
   const [form, setForm] = useState<BlogFormState>(() => createInitialForm());
   const [editingSlug, setEditingSlug] = useState<string | null>(null);
   const [slugTouched, setSlugTouched] = useState(false);
   const [statusMessage, setStatusMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [isSaving, setIsSaving] = useState(false);
+  const sharedBlogEnabled = isSharedBlogEnabled();
 
   useEffect(() => {
-    setCustomPosts(getCustomBlogPosts());
+    let active = true;
+
+    loadCustomBlogPosts().then((posts) => {
+      if (active) {
+        setCustomPosts(posts);
+      }
+    });
+
+    return () => {
+      active = false;
+    };
   }, []);
 
   const updateSection = (index: number, field: keyof SectionForm, value: string) => {
@@ -135,7 +148,7 @@ export default function BlogAdmin() {
         : [createSection()]
   });
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setStatusMessage('');
     setErrorMessage('');
@@ -174,25 +187,36 @@ export default function BlogAdmin() {
     };
 
     setIsSaving(true);
-    upsertCustomBlogPost(nextPost);
-    const nextCustomPosts = getCustomBlogPosts();
-    setCustomPosts(nextCustomPosts);
-    setIsSaving(false);
-    setStatusMessage(`Published ${title}.`);
-    resetForm();
-    navigate(`/blog/${slug}`);
+
+    try {
+      await saveCustomBlogPost(nextPost);
+      const nextCustomPosts = await loadCustomBlogPosts();
+      setCustomPosts(nextCustomPosts);
+      setStatusMessage(`${editingSlug ? 'Updated' : 'Published'} ${title}.`);
+      resetForm();
+      navigate(`/blog/${slug}`);
+    } catch {
+      setErrorMessage('Unable to save the post.');
+    } finally {
+      setIsSaving(false);
+    }
   };
 
-  const handleDelete = (slug: string) => {
+  const handleDelete = async (slug: string) => {
     const shouldDelete = window.confirm('Delete this custom blog post?');
 
     if (!shouldDelete) {
       return;
     }
 
-    removeCustomBlogPost(slug);
-    setCustomPosts(getCustomBlogPosts());
-    setStatusMessage('Post removed.');
+    try {
+      await deleteCustomBlogPost(slug);
+      const nextCustomPosts = await loadCustomBlogPosts();
+      setCustomPosts(nextCustomPosts);
+      setStatusMessage('Post removed.');
+    } catch {
+      setErrorMessage('Unable to delete the post.');
+    }
   };
 
   const handleEdit = (post: BlogPost) => {
@@ -235,16 +259,20 @@ export default function BlogAdmin() {
     event.target.value = '';
   };
 
-  const handleClearAll = () => {
+  const handleClearAll = async () => {
     const shouldClear = window.confirm('Remove all custom posts from this browser?');
 
     if (!shouldClear) {
       return;
     }
 
-    window.localStorage.removeItem('travelomate.blogPosts');
-    setCustomPosts([]);
-    setStatusMessage('All custom posts cleared.');
+    try {
+      await clearAllCustomBlogPosts();
+      setCustomPosts([]);
+      setStatusMessage('All custom posts cleared.');
+    } catch {
+      setErrorMessage('Unable to clear custom posts.');
+    }
   };
 
   return (
@@ -267,6 +295,10 @@ export default function BlogAdmin() {
             Create new articles, manage custom posts, and send them straight into the blog feed without editing source files.
           </p>
 
+          <div className="mb-6 inline-flex items-center gap-2 px-4 py-2 rounded-full border border-foreground/10 bg-foreground/5 text-xs font-bold uppercase tracking-[0.2em] text-foreground/60">
+            {sharedBlogEnabled ? 'Saving to shared blog API' : 'Local fallback mode'}
+          </div>
+
           <div className="flex flex-wrap items-center gap-3">
             <button
               type="button"
@@ -275,13 +307,13 @@ export default function BlogAdmin() {
             >
               <Eye className="w-4 h-4" /> View Blog
             </button>
-            {/* <button
+            <button
               type="button"
               onClick={handleClearAll}
               className="inline-flex items-center gap-2 px-5 py-3 rounded-full border border-foreground/15 hover:bg-foreground/5 transition-colors font-bold text-sm"
             >
               <Trash2 className="w-4 h-4" /> Clear Custom Posts
-            </button> */}
+            </button>
             <div className="text-sm text-foreground/45">
               {customPosts.length} custom post{customPosts.length === 1 ? '' : 's'} saved locally
             </div>
@@ -499,7 +531,7 @@ export default function BlogAdmin() {
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-foreground text-background font-black hover:opacity-90 disabled:opacity-60 transition-opacity"
               >
                 <Save className="w-4 h-4" />
-                {isSaving ? 'Saving...' : editingSlug ? 'Update Post' : 'Publish'}
+                {isSaving ? 'Saving...' : editingSlug ? 'Update Post' : 'Publish Post'}
               </button>
             </div>
           </div>

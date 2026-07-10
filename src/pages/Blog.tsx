@@ -38,14 +38,14 @@ export default function Blog() {
           <h1 className="text-4xl sm:text-6xl lg:text-7xl font-display font-black leading-[0.9] tracking-tighter mb-8 italic">
             Thinking <span className="text-brand not-italic">Better</span> Travel.
           </h1>
-          <div className="mb-8 flex flex-wrap items-center justify-center gap-3 text-sm">
+          {/* <div className="mb-8 flex flex-wrap items-center justify-center gap-3 text-sm">
             <div className="px-4 py-2 rounded-full border border-foreground/10 bg-foreground/5 font-bold text-foreground/60">
               {isSharedBlogEnabled() ? 'Shared blog sync enabled' : 'Local fallback mode'}
             </div>
             <Link to="/admin/blogs" className="px-4 py-2 rounded-full border border-foreground/10 hover:bg-foreground/5 transition-colors font-bold">
               Open Admin Panel
             </Link>
-          </div>
+          </div> */}
           <div className="relative max-w-xl mx-auto">
             <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-foreground/30 w-5 h-5" />
             <input 

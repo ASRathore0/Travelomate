@@ -9,7 +9,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     exit;
 }
 
-$storageFile = __DIR__ . '/blog-posts.json';
+$storageDir = __DIR__ . '/../../blog-posts-data';
+
+if (!is_writable(dirname($storageDir))) {
+    $storageDir = __DIR__ . '/../blog-posts-data';
+}
+if (!is_writable(dirname($storageDir))) {
+    $storageDir = __DIR__ . '/blog-posts-data';
+}
+
+$storageFile = $storageDir . '/blog-posts.json';
 
 function ensureStorage(string $storageFile): void {
     $directory = dirname($storageFile);

@@ -1,19 +1,24 @@
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { Calendar, Clock, ChevronLeft } from 'lucide-react';
-import { getBlogPostBySlug } from '../lib/blogPosts';
+import { getBlogPostBySlug, type BlogPost } from '../lib/blogPosts';
 import { SITE_NAME, SITE_URL } from '../lib/seo';
 import { applyHead, removeJsonLd } from '../lib/head';
-import { loadBlogPostBySlug } from '../lib/blogService';
+import { loadBlogPostBySlug, loadPublishedBlogPosts } from '../lib/blogService';
+import { motion } from 'motion/react';
 
 export default function BlogPost() {
   const { slug } = useParams();
   const [post, setPost] = useState(() => (slug ? getBlogPostBySlug(slug) : undefined));
+  const [recommendations, setRecommendations] = useState<BlogPost[]>([]);
 
   useEffect(() => {
     if (!slug) {
       return;
     }
+
+    // Set post from local storage synchronously on slug change to prevent flash of old content.
+    setPost(getBlogPostBySlug(slug));
 
     let active = true;
 
@@ -27,6 +32,30 @@ export default function BlogPost() {
       active = false;
     };
   }, [slug]);
+
+  useEffect(() => {
+    if (!post || !slug) {
+      return;
+    }
+
+    let active = true;
+
+    loadPublishedBlogPosts().then((allPosts) => {
+      if (!active) {
+        return;
+      }
+
+      const otherPosts = allPosts.filter((p) => p.slug !== slug);
+      const sameCategory = otherPosts.filter((p) => p.category === post.category);
+      const diffCategory = otherPosts.filter((p) => p.category !== post.category);
+
+      setRecommendations([...sameCategory, ...diffCategory].slice(0, 3));
+    });
+
+    return () => {
+      active = false;
+    };
+  }, [slug, post?.category]);
 
   useEffect(() => {
     if (!post) {
@@ -166,6 +195,70 @@ export default function BlogPost() {
           ))}
         </div>
       </div>
+
+      {recommendations.length > 0 && (
+        <section className="max-w-7xl mx-auto px-6 mt-20 pt-16 border-t border-foreground/10">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-10">
+            <div>
+              <span className="text-[10px] uppercase tracking-[0.25em] text-brand font-black mb-2 block">
+                Further Reading
+              </span>
+              <h2 className="text-3xl sm:text-4xl font-display font-black tracking-tight italic">
+                More <span className="text-brand not-italic">Travel</span> Insights.
+              </h2>
+            </div>
+            <Link
+              to="/blog"
+              className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-widest text-brand hover:gap-4 transition-all"
+            >
+              View All Articles <ChevronLeft className="w-4 h-4 rotate-180" />
+            </Link>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {recommendations.map((recPost, i) => (
+              <motion.article
+                key={recPost.slug}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className="group"
+              >
+                <Link to={`/blog/${recPost.slug}`} className="block">
+                  <div className="relative aspect-[16/10] rounded-[24px] overflow-hidden mb-5 border border-border-subtle">
+                    <img
+                      src={recPost.image}
+                      alt={recPost.title}
+                      className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 scale-105 group-hover:scale-100"
+                    />
+                    <div className="absolute top-4 left-4">
+                      <span className="px-2.5 py-1 bg-white/90 dark:bg-navy/90 backdrop-blur-md rounded-full text-[9px] font-black uppercase tracking-widest text-brand">
+                        {recPost.category}
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-3 text-[9px] uppercase font-black tracking-[0.2em] text-foreground/40 mb-3">
+                    <span>{recPost.date}</span>
+                    <span className="w-1 h-1 rounded-full bg-brand" />
+                    <span className="flex items-center gap-1">
+                      <Clock className="w-3 h-3" /> {recPost.readTime}
+                    </span>
+                  </div>
+
+                  <h3 className="text-xl font-bold mb-3 group-hover:text-brand transition-colors line-clamp-2">
+                    {recPost.title}
+                  </h3>
+                  <p className="text-xs text-foreground/60 leading-relaxed line-clamp-2 mb-4">
+                    {recPost.excerpt}
+                  </p>
+                </Link>
+              </motion.article>
+            ))}
+          </div>
+        </section>
+      )}
     </div>
   );
 }

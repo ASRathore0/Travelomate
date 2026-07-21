@@ -21,9 +21,18 @@ function buildApiUrl(query: string) {
   return `${baseUrl}${BLOG_API_PATH}${query}`;
 }
 
-function mergeWithSeedPosts(customPosts: BlogPost[]) {
-  const customSlugs = new Set(customPosts.map((post) => post.slug));
-  return [...customPosts, ...seedBlogPosts.filter((post) => !customSlugs.has(post.slug))];
+function mergeWithSeedPosts(remotePosts: BlogPost[]) {
+  const localCustom = getCustomBlogPosts();
+  const localCustomSlugs = new Set(localCustom.map((post) => post.slug));
+  
+  const filteredRemote = remotePosts.filter((post) => !localCustomSlugs.has(post.slug));
+  const remoteSlugs = new Set(filteredRemote.map((post) => post.slug));
+  
+  const filteredSeed = seedBlogPosts.filter(
+    (post) => !localCustomSlugs.has(post.slug) && !remoteSlugs.has(post.slug)
+  );
+  
+  return [...localCustom, ...filteredRemote, ...filteredSeed];
 }
 
 async function requestJson<T>(path: string, init?: RequestInit): Promise<T> {
@@ -70,7 +79,7 @@ export async function loadBlogPostBySlug(slug: string) {
 
   try {
     const result = await requestJson<{ post: BlogPost | null }>(`?slug=${encodeURIComponent(slug)}`);
-    return result.post ?? undefined;
+    return result.post ?? getBlogPostBySlug(slug);
   } catch {
     return getBlogPostBySlug(slug);
   }

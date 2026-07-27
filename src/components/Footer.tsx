@@ -5,7 +5,18 @@ import Logo from './Logo';
 
 export default function Footer() {
   return (
-    <footer id="footer" className="bg-background border-t border-foreground/5 pt-24 pb-12 transition-colors duration-500">
+    <footer 
+      id="footer" 
+      className="bg-background border-t border-foreground/5 pt-24 pb-12 transition-colors duration-500"
+      style={{
+        '--background': '#020617',
+        '--foreground': '#F8FAFC',
+        '--electric-green': '#F43F5E',
+        '--color-background': '#020617',
+        '--color-foreground': '#F8FAFC',
+        '--color-electric-green': '#F43F5E',
+      } as React.CSSProperties}
+    >
       <div className="max-w-7xl mx-auto px-6 text-foreground">
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-12 mb-24">
           

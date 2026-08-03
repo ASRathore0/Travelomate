@@ -9,9 +9,11 @@ import mangulLogo from '../assets/images/artifacts/logo.png';
 import sssLogo from '../assets/images/artifacts/sss-logo.jpg';
 import VV from '../assets/images/artifacts/VV-Photoroom.png';
 import Media from '../assets/images/artifacts/MediaNews4U.png';
+import rmzLogo from '../assets/images/artifacts/rmz.png';
 
 
 const partners = [
+  { name: "RMZ", logo: rmzLogo, className: "scale-[1.45]" },
   { name: "Bengaluru Bulls", logo: bullsLogo },
   { name: "Premier Volleyball League", logo: pvlLogo },
   { name: "Hockey India League", logo: hilLogo },
@@ -68,12 +70,14 @@ export default function TrustBar() {
             >
               {partner.logo ? (
                 <div className="relative group/logo w-32 md:w-40 h-16 md:h-20 flex items-center justify-center p-2 transition-colors duration-300">
-                  <img 
-                    src={partner.logo} 
-                    alt={partner.name} 
-                    className="max-h-full max-w-full w-auto object-contain transition-all duration-300 opacity-80 dark:opacity-90 group-hover/logo:opacity-100 group-hover/logo:scale-105 drop-shadow-xs dark:drop-shadow-none mix-blend-multiply dark:mix-blend-normal"
-                    referrerPolicy="no-referrer"
-                  />
+                  <div className={`flex items-center justify-center w-full h-full ${partner.className || ''}`}>
+                    <img 
+                      src={partner.logo} 
+                      alt={partner.name} 
+                      className="max-h-full max-w-full w-auto object-contain transition-all duration-300 opacity-80 dark:opacity-90 group-hover/logo:opacity-100 group-hover/logo:scale-105 drop-shadow-xs dark:drop-shadow-none mix-blend-multiply dark:mix-blend-normal"
+                      referrerPolicy="no-referrer"
+                    />
+                  </div>
                 </div>
               ) : (
                 <div className="relative group/text w-32 md:w-40 h-16 md:h-20 flex items-center justify-center p-2 transition-colors duration-300">

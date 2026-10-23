@@ -11,6 +11,7 @@ import Home from './pages/Home';
 import SportsLeagues from './pages/SportsLeagues';
 import CorporateTeams from './pages/CorporateTeams';
 import SelfBookingTool from './pages/SelfBookingTool';
+import Thrive from './pages/Thrive';
 import AboutUs from './pages/AboutUs';
 import Blog from './pages/Blog';
 import BlogPost from './pages/BlogPost';
@@ -49,6 +50,7 @@ function AppContent() {
           <Route path="/sports-leagues" element={<SportsLeagues />} />
           <Route path="/corporate-teams" element={<CorporateTeams />} />
           <Route path="/self-booking" element={<SelfBookingTool />} />
+          <Route path="/thrive" element={<Thrive />} />
           <Route path="/about" element={<AboutUs />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:slug" element={<BlogPost />} />

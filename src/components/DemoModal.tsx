@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { X, Send, CheckCircle2, Users, Target } from 'lucide-react';
+import { X, Send, CheckCircle2, Users, Target, MessageCircle } from 'lucide-react';
 
 interface DemoModalProps {
   isOpen: boolean;
@@ -13,8 +13,24 @@ export default function DemoModal({ isOpen, onClose }: DemoModalProps) {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
+  const [submittedData, setSubmittedData] = useState<{
+    firstName: string;
+    lastName: string;
+    email: string;
+    company: string;
+    organizationType: string;
+  } | null>(null);
 
   const formspreeEndpoint = 'https://formspree.io/f/xykvkopd';
+
+  const getWhatsAppUrl = () => {
+    if (!submittedData) return 'https://wa.me/919891749739';
+    const name = `${submittedData.firstName} ${submittedData.lastName}`.trim();
+    const company = submittedData.company ? ` from ${submittedData.company}` : '';
+    const nameText = name ? `I'm ${name}` : `I'd like`;
+    const text = `Hi Travelomate, ${nameText}${company}. I would like to schedule a product demo.`;
+    return `https://wa.me/919891749739?text=${encodeURIComponent(text)}`;
+  };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -23,6 +39,23 @@ export default function DemoModal({ isOpen, onClose }: DemoModalProps) {
 
     try {
       const formData = new FormData(e.currentTarget);
+      const data = {
+        firstName: (formData.get('firstName') as string) || '',
+        lastName: (formData.get('lastName') as string) || '',
+        email: (formData.get('email') as string) || '',
+        company: (formData.get('company') as string) || '',
+        organizationType: (formData.get('organizationType') as string) || ''
+      };
+      setSubmittedData(data);
+
+      // Automatically open WhatsApp in new tab
+      const name = `${data.firstName} ${data.lastName}`.trim();
+      const company = data.company ? ` from ${data.company}` : '';
+      const nameText = name ? `I'm ${name}` : `I'd like`;
+      const text = `Hi Travelomate, ${nameText}${company}. I would like to schedule a product demo.`;
+      const waUrl = `https://wa.me/919891749739?text=${encodeURIComponent(text)}`;
+      window.open(waUrl, '_blank', 'noopener,noreferrer');
+
       const response = await fetch(formspreeEndpoint, {
         method: 'POST',
         body: formData,
@@ -166,17 +199,28 @@ export default function DemoModal({ isOpen, onClose }: DemoModalProps) {
                     <div className="w-20 h-20 bg-electric-green/10 rounded-full flex items-center justify-center mb-6">
                       <CheckCircle2 className="w-10 h-10 text-electric-green" />
                     </div>
-                    <h2 className="text-3xl font-display font-bold mb-4">Request Sent!</h2>
-                    <p className="text-foreground/60 mb-8 max-w-sm">
-                      Thank you for your interest. A specialist from our team will contact you shortly to schedule your personalized demo.
+                    <h2 className="text-3xl font-display font-bold mb-3">Request Sent!</h2>
+                    <p className="text-foreground/60 mb-6 max-w-sm text-sm">
+                      Thank you! Your request was sent to our team. For immediate 1-on-1 assistance or priority scheduling, connect directly on WhatsApp:
                     </p>
-                    <button 
-                      onClick={onClose}
-                      className="px-8 py-3 bg-foreground text-background rounded-xl font-bold"
-                      id="demo-modal-done"
+                    <a
+                      href={getWhatsAppUrl()}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 bg-[#25D366] hover:bg-[#1EBE5D] text-white rounded-xl font-bold text-sm shadow-xl shadow-[#25D366]/25 hover:scale-105 active:scale-95 transition-all mb-4 cursor-pointer"
                     >
-                      Close
-                    </button>
+                      <MessageCircle className="w-5 h-5 fill-white text-white" />
+                      Forward & Chat on WhatsApp (+91 98917 49739)
+                    </a>
+                    <div>
+                      <button 
+                        onClick={onClose}
+                        className="px-8 py-2.5 bg-foreground/10 hover:bg-foreground/20 text-foreground rounded-xl font-bold text-sm transition-colors"
+                        id="demo-modal-done"
+                      >
+                        Close
+                      </button>
+                    </div>
                   </motion.div>
                 )}
               </AnimatePresence>

@@ -135,9 +135,11 @@ export default function ThriveCampaign() {
             {/* Left Column: Value Hook, Highlights & Social Proof */}
             <div className="lg:col-span-7 space-y-6 sm:space-y-8 text-left">
               {/* Pill Badge */}
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand/20 border border-brand/40 text-rose-200 text-[11px] sm:text-xs font-bold uppercase tracking-wider">
-                <Sparkles className="w-3.5 h-3.5 text-brand" />
-                Corporate Self-Booking Tool
+              <div className="flex justify-center lg:justify-start">
+                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand/20 border border-brand/40 text-rose-200 text-[11px] sm:text-xs font-bold uppercase tracking-wider">
+                  <Sparkles className="w-3.5 h-3.5 text-brand" />
+                  Corporate Self-Booking Tool
+                </div>
               </div>
 
               {/* Punchy Executive Headline */}

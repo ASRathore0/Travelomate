@@ -137,16 +137,17 @@ export default function ThriveCampaign() {
               {/* Pill Badge */}
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand/20 border border-brand/40 text-rose-200 text-[11px] sm:text-xs font-bold uppercase tracking-wider">
                 <Sparkles className="w-3.5 h-3.5 text-brand" />
-                Enterprise Corporate Self-Booking Tool
+                Corporate Self-Booking Tool
               </div>
 
               {/* Punchy Executive Headline */}
               <h1 className="text-2xl sm:text-4xl lg:text-5xl font-display font-black tracking-tight leading-[1.25] sm:leading-[1.15] text-white">
-                The Self-Booking Tool That Is <br className="hidden sm:inline" />
+                The Corporate Self-Booking Tool <br className="hidden sm:inline" />
+                Loved by{' '}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-rose-300 via-rose-400 to-brand">
-                  Loved By CEOs, CFOs, Travel Heads
+                  CEOs, CFOs, Travel Heads
                 </span>{' '}
-                & Finance Team.
+                & Finance Teams.
               </h1>
 
               {/* Core Feature Checklist */}

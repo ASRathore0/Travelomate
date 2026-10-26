@@ -470,9 +470,9 @@ export default function Thrive() {
               transition={{ delay: 0.1 }}
               className="text-4xl sm:text-5xl lg:text-7xl font-display font-black tracking-tight leading-[1.05] mb-5 text-white drop-shadow-xl"
             >
-              The Self-Booking Tool That{' '}
-              <span className="text-brand inline-block drop-shadow-[0_0_35px_rgba(225,29,72,0.6)]">Employees Love</span>{' '}
-              & <span className="underline decoration-brand/50 underline-offset-8">CFOs Trust.</span>
+              The Self-Booking Tool That Is{' '}
+              <span className="text-brand inline-block drop-shadow-[0_0_35px_rgba(225,29,72,0.6)]">Loved By CEOs, CFOs, Travel Heads</span>{' '}
+              & <span className="underline decoration-brand/50 underline-offset-8">Finance Team.</span>
             </motion.h1>
 
             {/* Sub-headline */}

@@ -87,7 +87,8 @@ export default function Navbar() {
       href: '#Resourece',
       dropdown: [
          
-        { name: 'Thrive (Corporate SBT)', href: '/thrive', isNew: true },
+        { name: 'Thrive', href: '/thrive', isNew: true },
+        { name: 'Why Thrive', href: '/why-thrive' },
         { name: 'Our Journey', href: '/journey' },
         { name: 'Blog', href: '/blog' },
         { name: 'Placard Print', href: '/placard-print', isNew: true },

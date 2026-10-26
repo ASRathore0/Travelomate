@@ -18,7 +18,7 @@ import rmzLogo from '../assets/images/artifacts/rmz.png';
 import bullsLogo from '../assets/images/artifacts/Bulls.png';
 import pvlLogo from '../assets/images/artifacts/prime volleyball-Photoroom.png';
 import hilLogo from '../assets/images/artifacts/hil_logo_2.webp';
-import stellarLogo from '../assets/images/artifacts/stellar-logo.png';
+import hdfcLogo from '../assets/images/artifacts/hdfc_logo.jpg';
 
 export default function Thrive() {
   const { openDemo } = useDemo();
@@ -452,7 +452,7 @@ export default function Thrive() {
         </div>
 
         <div className="max-w-7xl mx-auto px-6 relative z-10 w-full">
-          <div className="text-center max-w-4xl mx-auto mb-8 lg:mb-10">
+          <div className="text-center max-w-5xl mx-auto mb-8 lg:mb-10">
             {/* Pill Badge */}
             <motion.div
               initial={{ opacity: 0, y: 15 }}
@@ -468,11 +468,14 @@ export default function Thrive() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
-              className="text-4xl sm:text-5xl lg:text-7xl font-display font-black tracking-tight leading-[1.05] mb-5 text-white drop-shadow-xl"
+              className="text-3xl sm:text-5xl lg:text-6xl font-display font-black tracking-tight leading-[1.15] mb-6 text-white drop-shadow-xl"
             >
-              The Self-Booking Tool That Is{' '}
-              <span className="text-brand inline-block drop-shadow-[0_0_35px_rgba(225,29,72,0.6)]">Loved By CEOs, CFOs, Travel Heads</span>{' '}
-              & <span className="underline decoration-brand/50 underline-offset-8">Finance Team.</span>
+              The Corporate Self-Booking Tool <br className="hidden md:inline" />
+              Loved by{' '}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-rose-300 via-rose-400 to-brand">
+                CEOs, CFOs, Travel Heads
+              </span>{' '}
+              & Finance Teams.
             </motion.h1>
 
             {/* Sub-headline */}
@@ -546,7 +549,7 @@ export default function Thrive() {
               <img src={bullsLogo} alt="Bengaluru Bulls" className="h-7 sm:h-9 object-contain opacity-85 hover:opacity-100 transition-opacity" />
               <img src={pvlLogo} alt="Prime Volleyball League" className="h-6 sm:h-8 object-contain brightness-0 invert opacity-80 hover:opacity-100 transition-opacity" />
               <img src={hilLogo} alt="Hockey India League" className="h-7 sm:h-9 object-contain opacity-85 hover:opacity-100 transition-opacity" />
-              <img src={stellarLogo} alt="Stellar Group" className="h-7 sm:h-9 object-contain brightness-0 invert opacity-80 hover:opacity-100 transition-opacity" />
+              <img src={hdfcLogo} alt="HDFC Bank" className="h-5 sm:h-6 object-contain rounded-xs opacity-90 hover:opacity-100 transition-opacity shadow-sm" />
             </div>
           </div>
         </div>

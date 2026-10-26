@@ -44,6 +44,18 @@ export const SEO_ENTRIES: SeoEntry[] = [
       'Thrive by Travelomate is India\'s #1 Corporate Self-Booking Tool (SBT). Book business flights, hotels, and cabs in 45 seconds with 100% automated travel policy enforcement, 1-click WhatsApp approvals, wholesale NDC fares, and complete GSTR-2B Input Tax Credit reconciliation.'
   },
   {
+    path: '/why-thrive',
+    title: 'Why Thrive | Enterprise Corporate Travel Management Platform',
+    description:
+      'Discover why forward-thinking enterprises, CFOs, and travel heads choose Thrive by Travelomate. Explore 45s self-booking, 24-30% spend reduction, real-time GST tax recovery, and automated policy guardrails.'
+  },
+  {
+    path: '/thrive-campaign',
+    title: 'Thrive Corporate SBT | 45s Corporate Travel Bookings & 30% Savings',
+    description:
+      'Book corporate flights, hotels, and cabs in 45 seconds. Automated travel policy compliance, wholesale NDC corporate airfares, and 100% GSTR-2B Input Tax Credit recovery.'
+  },
+  {
     path: '/about',
     title: 'About Travelomate | Travel Intelligence Since 2010',
     description:
